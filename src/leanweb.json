@@ -1,0 +1,10 @@
+{
+  "name": "leanweb-app",
+  "components": [
+    "root",
+    "terminal",
+    "header",
+    "footer",
+    "section-primary"
+  ]
+}
