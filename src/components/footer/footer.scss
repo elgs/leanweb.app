@@ -1,0 +1,10 @@
+:host {
+  background-color: #333;
+  display: grid;
+  height: 50px;
+  gap: 0 20px;
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: 1fr repeat(9, 100px) 1fr;
+}

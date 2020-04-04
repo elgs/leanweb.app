@@ -8,6 +8,17 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-// div {
+.codeBlock {
+  position: relative;
+  .label {
+    position: absolute;
+    color: lightgray;
+    right: 4px;
+    top: 4px;
+    font-size: 11px;
+  }
+}
+
+div {
 //   border: 1px solid lightgray;
-// }
+}
