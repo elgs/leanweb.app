@@ -5,7 +5,7 @@
   align-items: center;
 
   display: grid;
-  grid-template-columns: 1fr repeat(6, minmax(auto, 100px)) 1fr;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
 
   .logo {
     grid-column: 2;
@@ -15,7 +15,7 @@
   div.links {
     display: flex;
     justify-content: flex-end;
-    grid-column: 7;
+    grid-column: 9;
     grid-row: 1;
 
     svg.npm {

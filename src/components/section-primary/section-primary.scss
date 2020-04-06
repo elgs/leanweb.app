@@ -3,11 +3,11 @@
   gap: 40px 20px;
   background-color: tomato;
   display: grid;
-  grid-template-columns: 1fr repeat(6, minmax(auto, 100px)) 1fr;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
   grid-template-areas:
-    "lm l l l m m m rm"
-    "lm html html html js js js rm"
-    "lm browser browser browser browser browser browser rm";
+    "lm l l l l m m m m rm"
+    "lm html html html html js js js js rm"
+    "lm browser browser browser browser browser browser browser browser rm";
 
   .left {
     grid-area: l;
@@ -38,7 +38,7 @@
   .middle {
     grid-area: m;
     color: white;
-    padding-left: 50px;
+    padding-left: 20px;
 
     h1 {
       font-size: 32px;
@@ -52,7 +52,7 @@
   }
 
   .codeBlock {
-    width: 340px;
+    //  width: 340px;
     &.html {
       grid-area: html;
       pre {
