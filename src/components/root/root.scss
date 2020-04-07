@@ -5,6 +5,8 @@ div.code {
   display: grid;
   grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
 
+  background-color: #fafafa;
+
   div.examples {
     grid-column: 2/10;
     grid-row: 1;
