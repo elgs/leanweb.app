@@ -17,8 +17,23 @@ body {
     top: 4px;
     font-size: 11px;
   }
+  pre {
+    margin: 0;
+  }
+}
+
+.browser {
+  leanweb-app-terminal .mainScreen {
+    background-color: white;
+    border: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+  }
 }
 
 div {
-//   border: 1px solid lightgray;
+//   border: 1px solid black;
+//   color: red;
 }

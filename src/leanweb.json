@@ -5,6 +5,7 @@
     "terminal",
     "header",
     "footer",
-    "section-primary"
+    "section-primary",
+    "sections/code-01"
   ]
 }

@@ -1,25 +1,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
-
-<div class="left">
-   <leanweb-app-terminal>
-      <div class="mainScreen">
-         <p class="line" lw lw-for="line in terminalData.install">line</p>
-      </div>
-   </leanweb-app-terminal>
-</div>
-<div class="middle">
-   <h1>Leanweb</h1>
-   <h3>Tools for building Web Component projects</h3>
-   <h3>Not a framework, no magic</h3>
-   <h3>All AOT, no JIT</h3>
-</div>
-
 <div class="codeBlock html">
    <span class="label">HTML</span>
    <pre><code class="html">
-  
-  Hello &lt;span lw&gt;name&lt;/span&gt;!
-
+   Hello &lt;span lw-if='name===&quot;Leanweb&quot;'&gt;Leanweb&lt;/span&gt;!
 
 </code></pre>
 </div>
@@ -35,7 +18,7 @@
 <div class="browser">
    <leanweb-app-terminal>
       <div class="mainScreen">
-         Hello <span lw>name</span>!
+         Hello <span lw-if='name==="Leanweb"'>Leanweb</span>!
       </div>
    </leanweb-app-terminal>
 </div>

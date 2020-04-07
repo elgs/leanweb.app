@@ -43,6 +43,7 @@
     h1 {
       font-size: 32px;
       font-weight: normal;
+      margin-top: 0;
     }
 
     h3 {
@@ -52,28 +53,14 @@
   }
 
   .codeBlock {
-    //  width: 340px;
     &.html {
       grid-area: html;
-      pre {
-        margin: 0;
-      }
     }
     &.javascript {
       grid-area: js;
-      pre {
-        margin: 0;
-      }
     }
   }
   .browser {
     grid-area: browser;
-    leanweb-app-terminal .mainScreen {
-      background-color: white;
-      box-sizing: border-box;
-      width: 100%;
-      padding: 20px;
-      border-radius: 0 0 2px 2px;
-    }
   }
 }
