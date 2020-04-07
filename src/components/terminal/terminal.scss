@@ -6,17 +6,17 @@
     height: 30px;
     background-color: #d5d5d5;
     border-radius: 2px 2px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
 
     .topButton {
       height: 11px;
       width: 11px;
       border-radius: 50%;
       position: relative;
-      top: 6px;
-      left: 8px;
 
-      display: inline-block;
-      margin-right: 2px;
+      margin-left: 5px;
 
       &.redButton {
         background-color: #ff3b47;
