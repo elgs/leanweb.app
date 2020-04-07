@@ -1,11 +1,14 @@
 {
-  "name": "leanweb-app",
-  "components": [
-    "root",
-    "terminal",
-    "header",
-    "footer",
-    "section-primary",
-    "sections/code-01"
-  ]
+   "name": "leanweb-app",
+   "components": [
+      "root",
+      "terminal",
+      "header",
+      "footer",
+      "section-primary",
+      "sections/code-01"
+   ],
+   "resources": [
+      "resources/"
+   ]
 }
