@@ -7,7 +7,9 @@
     "footer",
     "section-primary",
     "sections/code-01",
-    "sections/code-02"
+    "sections/code-02",
+    "sections/code-03",
+    "sections/code-04"
   ],
   "resources": [
     "resources/"

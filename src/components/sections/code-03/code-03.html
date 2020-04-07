@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>lw-model and lw-on</h2>
+<div class="codeBlock html">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;input type=&quot;text&quot; lw-model=&quot;name&quot;&gt;
+   &lt;button lw-on:click=&quot;resetName()&quot;&gt; Reset Name &lt;/button&gt;
+   &lt;span lw&gt;name&lt;/span&gt;
+
+</code></pre>
+</div>
+<div class="codeBlock javascript">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      resetName() {
+         this.name = 'Leanweb';
+         this.update();
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <input type="text" lw-model="name">
+         <button lw-on:click="resetName()"> Reset Name </button>
+         <span lw>name</span>
+      </div>
+   </leanweb-app-terminal>
+</div>

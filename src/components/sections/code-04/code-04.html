@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>lw-class</h2>
+<div class="codeBlock html">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;div lw lw-for='item, $index in items' lw-class:active='isActive($index)'&gt;item&lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="codeBlock html">
+   <span class="label">CSS/SCSS</span>
+   <pre><code class="scss">
+   .active {
+      color: red;
+   }
+
+</code></pre>
+</div>
+
+<div class="codeBlock javascript">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   items = ['one', 'two', 'three'];
+   isActive(index) {
+      return index === 1;
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <div lw lw-for='item, $index in items' lw-class:active='isActive($index)'>item</div>
+      </div>
+   </leanweb-app-terminal>
+</div>
