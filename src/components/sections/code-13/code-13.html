@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>Working 2D array</h2>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;button lw-on:click=&quot;reset()&quot;&gt;Reset&lt;/button&gt;
+   &lt;div lw-for=&quot;item, $i in array2d&quot;&gt;
+      &lt;span lw-for=&quot;item1, $j in array2d[$i]&quot;&gt;
+         &lt;input type=&quot;number&quot; lw-model=&quot;array2d[$i][$j]&quot;&gt;
+         &lt;span lw&gt;item1&lt;/span&gt;
+      &lt;/span&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      array2d = [
+         [1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9],
+      ];
+
+      reset() {
+         this.array2d = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+         ];
+         this.update();
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <button lw-on:click="reset()">Reset</button>
+         <div lw-for="item, $i in array2d">
+            <span lw-for="item1, $j in array2d[$i]">
+               <input type="number" lw-model="array2d[$i][$j]">
+               <span lw>item1</span>
+            </span>
+         </div>
+      </div>
+   </leanweb-app-terminal>
+</div>
