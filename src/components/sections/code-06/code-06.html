@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
 <h2>lw-input</h2>
-
-<div class="codeBlock">
+<p>
+   The following example shows how parent and child component share data by passing data with <span
+      class='text-highlight'>lw-input:</span>.
+</p>
+<div class="code-block">
    <span class="label">parent.html</span>
    <pre><code class="html">
    &lt;div class=&quot;parent&quot;&gt;
@@ -12,10 +15,11 @@
       &lt;/div&gt;
       &lt;leanweb-demo-child lw-input:item='item'&gt;&lt;/leanweb-demo-child&gt;
    &lt;/div&gt;
+
 </code></pre>
 </div>
 
-<div class="codeBlock">
+<div class="code-block">
    <span class="label">parent.js</span>
    <pre><code class="javascript">
    item = {
@@ -30,7 +34,7 @@
 </code></pre>
 </div>
 
-<div class="codeBlock">
+<div class="code-block">
    <span class="label">child.html</span>
    <pre><code class="html">
    &lt;div class='child'&gt;
@@ -45,7 +49,7 @@
 </code></pre>
 </div>
 
-<div class="codeBlock">
+<div class="code-block">
    <span class="label">child.js</span>
    <pre><code class="javascript">
    addOne() {

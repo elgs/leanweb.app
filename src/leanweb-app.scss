@@ -8,7 +8,7 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.codeBlock {
+.code-block {
   position: relative;
   .label {
     position: absolute;
@@ -31,6 +31,12 @@ body {
     padding: 20px;
     border-radius: 0 0 2px 2px;
   }
+}
+
+.text-highlight {
+  background-color: #ddd;
+  padding: 1px 4px;
+  border-radius: 1px;
 }
 
 // div {
