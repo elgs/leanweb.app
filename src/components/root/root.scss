@@ -1,13 +1,16 @@
-div.code {
+.commands,
+.directives,
+.form-bindings {
   align-items: center;
   gap: 0 20px;
+  padding-top: 50px;
 
   display: grid;
   grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
 
   background-color: #fafafa;
 
-  div.examples {
+  div.center {
     grid-column: 2/10;
     grid-row: 1;
     align-items: center;

@@ -23,7 +23,8 @@
     "sections/code-12",
     "sections/code-12/pub",
     "sections/code-12/sub",
-    "sections/code-13"
+    "sections/code-13",
+    "sections/commands"
   ],
   "resources": [
     "resources/"
