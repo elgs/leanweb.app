@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
-<h2>lw-input</h2>
+<h2>lw-input:</h2>
 <p>
    The following example shows how parent and child component share data by passing data with <span
       class='text-highlight'>lw-input:</span>.
@@ -22,13 +22,15 @@
 <div class="code-block">
    <span class="label">parent.js</span>
    <pre><code class="javascript">
-   item = {
-      name: 'Banana',
-      quantity: 1,
-   };
+   class extends LWElement {
+      item = {
+         name: 'Banana',
+         quantity: 1,
+      };
 
-   updateQuantity() {
-      this.update();
+      updateQuantity() {
+         this.update();
+      }
    }
 
 </code></pre>
@@ -52,14 +54,16 @@
 <div class="code-block">
    <span class="label">child.js</span>
    <pre><code class="javascript">
-   addOne() {
-      this.item.quantity += 1;
-      this.update();
-   }
+   class extends LWElement {
+      addOne() {
+         this.item.quantity += 1;
+         this.update();
+      }
 
-   removeOne() {
-      this.item.quantity -= 1;
-      this.update();
+      removeOne() {
+         this.item.quantity -= 1;
+         this.update();
+      }
    }
 
 </code></pre>
