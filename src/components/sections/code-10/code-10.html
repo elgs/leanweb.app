@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>Working with Multiple Select</h2>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;button lw-on:click='toggleAllOptions()'&gt;Toggle All&lt;/button&gt;
+   &lt;span lw&gt; selectedOptions &lt;/span&gt;
+   &lt;div&gt;
+      &lt;select lw-model=&quot;selectedOptions&quot; multiple&gt;
+         &lt;option lw lw-for=&quot;item, $index in items&quot;&gt;item&lt;/option&gt;
+      &lt;/select&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      items = ['one', 'two', 'three'];
+      toggleAllOptions() {
+         if (this.selectedOptions.length) {
+            this.selectedOptions.length = 0;
+         } else {
+            this.selectedOptions = [...this.items];
+         }
+         this.update();
+      }
+      selectedOptions = [];
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <button lw-on:click='toggleAllOptions()'>Toggle All</button>
+         <span lw> selectedOptions </span>
+         <div>
+            <select lw-model="selectedOptions" multiple>
+               <option lw lw-for="item, $index in items">item</option>
+            </select>
+         </div>
+      </div>
+   </leanweb-app-terminal>
+</div>

@@ -15,7 +15,13 @@
     "sections/code-06/parent",
     "sections/code-06/child",
     "sections/code-07",
-    "sections/code-08"
+    "sections/code-08",
+    "sections/code-09",
+    "sections/code-10",
+    "sections/code-11",
+    "sections/code-12",
+    "sections/code-12/pub",
+    "sections/code-12/sub"
   ],
   "resources": [
     "resources/"

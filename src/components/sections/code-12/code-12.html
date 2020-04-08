@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>Working with Events</h2>
+<div class="code-block">
+   <span class="label">pub.html</span>
+   <pre><code class="html">
+   &lt;div class=&quot;pub&quot;&gt;
+      &lt;span&gt;Time Publisher&lt;/span&gt;
+      &lt;span lw&gt;time&lt;/span&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">pub.js</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      constructor() {
+         super(component);
+         setInterval(() => {
+            this.time = new Date(Date.now()).toLocaleString();
+            LWElement.eventBus.dispatchEvent('time', this.time);
+            this.update();
+         }, 1000);
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">sub.html</span>
+   <pre><code class="html">
+   &lt;div class='sub'&gt;
+      &lt;span&gt;Time Subscriber&lt;/span&gt;
+      &lt;span lw&gt;time&lt;/span&gt;
+      &lt;div class=&quot;buttons&quot;&gt;
+         &lt;button lw-bind:disabled=&quot;subscribed&quot; lw-on:click=&quot;sub()&quot;&gt;Subscribe Time&lt;/button&gt;
+         &lt;button lw-bind:disabled=&quot;!subscribed&quot; lw-on:click=&quot;unsub()&quot;&gt;Unsubscribe Time&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">sub.js</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      sub() {
+         this.listener = LWElement.eventBus.addEventListener('time', event => {
+            this.time = event.data;
+            this.update();
+         });
+         this.subscribed = true;
+         this.update();
+      }
+
+      unsub() {
+         LWElement.eventBus.removeEventListener(this.listener);
+         this.subscribed = false;
+         this.update();
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <leanweb-app-sections-code-12-pub></leanweb-app-sections-code-12-pub>
+         <leanweb-app-sections-code-12-sub></leanweb-app-sections-code-12-sub>
+      </div>
+   </leanweb-app-terminal>
+</div>
