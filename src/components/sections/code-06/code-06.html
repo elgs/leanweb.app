@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<h2>lw-input</h2>
+
+<div class="codeBlock">
+   <span class="label">parent.html</span>
+   <pre><code class="html">
+   &lt;div class=&quot;parent&quot;&gt;
+      &lt;span&gt;Parent&lt;/span&gt;
+      &lt;span lw&gt;item?.quantity&lt;/span&gt;
+      &lt;div class=&quot;buttons&quot;&gt;
+         &lt;button lw-on:click=&quot;updateQuantity()&quot;&gt;Update Quantity&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;leanweb-demo-child lw-input:item='item'&gt;&lt;/leanweb-demo-child&gt;
+   &lt;/div&gt;
+</code></pre>
+</div>
+
+<div class="codeBlock">
+   <span class="label">parent.js</span>
+   <pre><code class="javascript">
+   item = {
+      name: 'Banana',
+      quantity: 1,
+   };
+
+   updateQuantity() {
+      this.update();
+   }
+
+</code></pre>
+</div>
+
+<div class="codeBlock">
+   <span class="label">child.html</span>
+   <pre><code class="html">
+   &lt;div class='child'&gt;
+      &lt;span&gt;Child&lt;/span&gt;
+      &lt;span lw&gt;item?.quantity&lt;/span&gt;
+      &lt;div class=&quot;buttons&quot;&gt;
+         &lt;button lw-on:click=&quot;addOne()&quot;&gt;Add One&lt;/button&gt;
+         &lt;button lw-on:click=&quot;removeOne()&quot;&gt;Remove One&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="codeBlock">
+   <span class="label">child.js</span>
+   <pre><code class="javascript">
+   addOne() {
+      this.item.quantity += 1;
+      this.update();
+   }
+
+   removeOne() {
+      this.item.quantity -= 1;
+      this.update();
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <leanweb-app-sections-code-06-parent></leanweb-app-sections-code-06-parent>
+      </div>
+   </leanweb-app-terminal>
+</div>

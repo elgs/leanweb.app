@@ -9,7 +9,11 @@
     "sections/code-01",
     "sections/code-02",
     "sections/code-03",
-    "sections/code-04"
+    "sections/code-04",
+    "sections/code-05",
+    "sections/code-06",
+    "sections/code-06/parent",
+    "sections/code-06/child"
   ],
   "resources": [
     "resources/"

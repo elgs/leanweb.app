@@ -1,0 +1,16 @@
+.parent {
+  width: 400px;
+  height: 200px;
+  border: 1px solid gray;
+  margin: auto;
+  display: grid;
+  margin-top: 20px;
+
+  span {
+    margin: auto;
+  }
+
+  .buttons {
+    margin: auto;
+  }
+}
