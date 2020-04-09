@@ -16,8 +16,5 @@
       "@babel/preset-env": "^7.9.5",
       "babel-loader": "^8.1.0",
       "electron": "^8.2.1"
-   },
-   "dependencies": {
-      "highlight.js": "^9.18.1"
    }
 }
