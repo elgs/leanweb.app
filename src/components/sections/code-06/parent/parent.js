@@ -14,7 +14,6 @@ customElements.define(component.id,
       };
 
       updateQuantity() {
-         this.update();
       }
    }
 );
