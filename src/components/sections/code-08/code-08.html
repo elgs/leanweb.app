@@ -16,15 +16,10 @@
    <pre><code class="javascript">
    class extends LWElement {
       items = ['one', 'two', 'three'];
-      toggleCheckboxes() {
-         if (this.checkedValues.length) {
-            this.checkedValues.length = 0;
-         } else {
-            this.checkedValues = [...this.items];
-         }
-         this.update();
+      chooseTwo() {
+         this.picked = 'two';
       }
-      checkedValues = [];
+      picked;
    }
 
 </code></pre>

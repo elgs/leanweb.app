@@ -13,7 +13,6 @@ customElements.define(component.id,
       items = ['one', 'two', 'three'];
       selectTwo() {
          this.selectedOption = 'two';
-         this.update();
       }
       selectedOption;
    }

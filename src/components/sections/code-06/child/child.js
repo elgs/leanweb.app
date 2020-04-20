@@ -10,12 +10,10 @@ customElements.define(component.id,
 
       addOne() {
          this.item.quantity += 1;
-         this.update();
       }
 
       removeOne() {
          this.item.quantity -= 1;
-         this.update();
       }
    }
 );

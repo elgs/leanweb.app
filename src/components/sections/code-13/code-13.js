@@ -18,7 +18,6 @@ customElements.define(component.id,
 
       reset() {
          this.array2d.forEach(a => a.fill(0));
-         this.update();
       }
    }
 );

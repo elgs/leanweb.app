@@ -14,7 +14,6 @@ customElements.define(component.id,
       items = ['one', 'two', 'three'];
       chooseTwo() {
          this.picked = 'two';
-         this.update();
       }
       picked;
    }

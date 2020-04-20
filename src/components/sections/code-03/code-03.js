@@ -13,7 +13,6 @@ customElements.define(component.id,
 
       resetName() {
          this.name = 'Leanweb';
-         this.update();
       }
    }
 );

@@ -13,7 +13,6 @@ customElements.define(component.id,
 
       selectRange50() {
          this.selectedRange = 50;
-         this.update();
       }
 
       selectedRange = 10;

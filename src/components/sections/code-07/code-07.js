@@ -18,7 +18,6 @@ customElements.define(component.id,
          } else {
             this.checkedValues = [...this.items];
          }
-         this.update();
       }
       checkedValues = [];
    }

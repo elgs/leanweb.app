@@ -17,7 +17,6 @@ customElements.define(component.id,
          } else {
             this.selectedOptions = [...this.items];
          }
-         this.update();
       }
       selectedOptions = [];
    }
