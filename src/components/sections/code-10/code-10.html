@@ -3,12 +3,10 @@
    <span class="label">HTML</span>
    <pre><code class="html">
    &lt;button lw-on:click='toggleAllOptions()'&gt;Toggle All&lt;/button&gt;
-   &lt;span lw&gt; selectedOptions &lt;/span&gt;
-   &lt;div&gt;
-      &lt;select lw-model=&quot;selectedOptions&quot; multiple&gt;
-         &lt;option lw lw-for=&quot;item, $index in items&quot;&gt;item&lt;/option&gt;
-      &lt;/select&gt;
-   &lt;/div&gt;
+   &lt;div lw&gt; selectedOptions &lt;/div&gt;
+   &lt;select lw-model=&quot;selectedOptions&quot; multiple&gt;
+      &lt;option lw lw-for=&quot;item, $index in items&quot;&gt;item&lt;/option&gt;
+   &lt;/select&gt;
 
 </code></pre>
 </div>
@@ -34,12 +32,10 @@
    <leanweb-app-terminal>
       <div class="mainScreen">
          <button lw-on:click='toggleAllOptions()'>Toggle All</button>
-         <span lw> selectedOptions </span>
-         <div>
-            <select lw-model="selectedOptions" multiple>
-               <option lw lw-for="item, $index in items">item</option>
-            </select>
-         </div>
+         <div lw> selectedOptions </div>
+         <select lw-model="selectedOptions" multiple>
+            <option lw lw-for="item, $index in items">item</option>
+         </select>
       </div>
    </leanweb-app-terminal>
 </div>

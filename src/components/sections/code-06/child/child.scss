@@ -1,17 +1,19 @@
 .child {
-   width: 300px;
-   height:100px;
-   border: 1px solid gray;
-   margin: auto;
-   display: grid;
-   margin-top: 10px;
-   
-   span {
-     margin: auto;
-   }
- 
-   .buttons {
-     margin: auto;
-   }
- }
- 
+  width: 300px;
+  height: 100px;
+  border: 1px solid gray;
+  margin: auto;
+  display: grid;
+  margin-top: 10px;
+
+  span {
+    margin: auto;
+  }
+
+  .buttons {
+    margin: auto;
+    > button {
+      width: 100px;
+    }
+  }
+}
