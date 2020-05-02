@@ -1,11 +1,10 @@
 import LWElement from './../../../../lib/lw-element.js';
-import interpolation from './ast.js';
+import ast from './ast.js';
 
-const component = { id: 'leanweb-app-sections-code-12-pub', interpolation };
-customElements.define(component.id,
+customElements.define('leanweb-app-sections-code-12-pub',
    class extends LWElement {  // LWElement extends HTMLElement
       constructor() {
-         super(component);
+         super(ast);
          setInterval(() => {
             this.time = new Date(Date.now()).toLocaleString();
             LWElement.eventBus.dispatchEvent('time', this.time);
