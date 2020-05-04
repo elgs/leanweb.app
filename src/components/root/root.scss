@@ -1,14 +1,10 @@
-.commands {
-  padding-top: 50px;
-}
-
 .commands,
 .directives,
 .form-bindings,
 .howtos {
+  padding-top: 50px;
   align-items: center;
   gap: 0 20px;
-  padding-bottom: 50px;
 
   display: grid;
   grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
