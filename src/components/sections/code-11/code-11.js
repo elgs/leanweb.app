@@ -12,7 +12,7 @@ customElements.define('leanweb-app-sections-code-11',
       constructor() {
          super(ast);
          super.applyStyles(agate);
-         hljs.registerLanguage('javascript', javascript, xml);
+         hljs.registerLanguage('javascript', javascript);
          hljs.registerLanguage('html', xml);
          hljs.registerLanguage('scss', scss);
          this.shadowRoot.querySelectorAll('pre code').forEach((block) => {

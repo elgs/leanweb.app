@@ -1,0 +1,43 @@
+<h2>How to import third party modules?</h2>
+<div class="code-block javascript">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   // relative to node_modules
+   import hljs from 'highlight.js/lib/core.js';
+   
+   // relative to node_modules
+   import hljs from 'highlight.js';
+   
+   // relative to project root
+   import LWElement from '~/src/lib/lw-element.js';
+
+   // relative path
+   import ast from './ast.js';
+
+</code></pre>
+</div>
+
+<h2>How to import CSS/SCSS?</h2>
+<div class="code-block javascript">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   import agate from 'highlight.js/scss/agate.scss';
+   // customElements.define('demo-root',
+   //   class extends LWElement {  // LWElement extends HTMLElement
+   //     constructor() {
+   //       super(ast);
+
+            // apply CSS/SCSS to local web component
+            super.applyStyles(agate);
+   //     }
+   //   }
+   // );
+</code></pre>
+
+<h2>How to import JSON?</h2>
+<div class="code-block javascript">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   import pkg from '~/package.json';
+
+</code></pre>
