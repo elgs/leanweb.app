@@ -1,5 +1,5 @@
 <h2>How to import third party modules?</h2>
-<div class="code-block javascript">
+<div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
    // relative to node_modules
@@ -18,7 +18,7 @@
 </div>
 
 <h2>How to import CSS/SCSS?</h2>
-<div class="code-block javascript">
+<div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
    import agate from 'highlight.js/scss/agate.scss';
@@ -36,7 +36,7 @@
 </div>
 
 <h2>How to import JSON?</h2>
-<div class="code-block javascript">
+<div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
    import pkg from '~/package.json';
@@ -46,3 +46,29 @@
 
 <p>You could import any files using the same <span class="text-highlight">import</span> syntax. But please note you will
    be responsible for making the imported files available in resources directories.</p>
+
+<h2>How to update DOM of another component?</h2>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   document.querySelector('demo-root').shadowRoot.querySelector('demo-login').update();
+   
+   </code></pre>
+</div>
+<p>
+   This is to update the DOM of the <span class="text-highlight">demo-login</span> component enclosed by <span
+      class="text-highlight">demo-root</span> component.
+</p>
+
+<h2>How to do component routine?</h2>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;demo-login lw-if=&quot;urlHash==='#/login'&quot;&gt;&lt;/demo-login&gt;
+   &lt;demo-signup lw-if=&quot;urlHash==='#/signup'&quot;&gt;&lt;/demo-signup&gt;
+   &lt;demo-dashboard lw-if=&quot;urlHash==='#/dashboard'&quot;&gt;&lt;/demo-dashboard&gt;
+   </code></pre>
+</div>
+
+<br>
+<br>
