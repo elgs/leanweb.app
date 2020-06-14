@@ -70,5 +70,26 @@
    </code></pre>
 </div>
 
+<h2>How to update DOM when url hash changes?</h2>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   customElements.define('sso-root',
+   class extends LWElement { 
+      constructor() {
+         super(ast);
+      }
+
+      // If urlHashChanged() is defined as a function, it will be called 
+      // whenever the urlHash changes. This could be useful to update the 
+      // DOM on component routing.
+      urlHashChanged() {
+         // update component DOM
+         this.update();
+      }
+   }
+   </code></pre>
+</div>
+
 <br>
 <br>
