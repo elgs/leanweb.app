@@ -11,8 +11,5 @@ customElements.define('leanweb-app-sections-code-06-parent',
          name: 'Banana',
          quantity: 1,
       };
-
-      updateQuantity() {
-      }
    }
 );
