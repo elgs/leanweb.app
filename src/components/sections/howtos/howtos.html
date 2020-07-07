@@ -1,5 +1,22 @@
 <h2>How to import another Leanweb project?</h2>
-<p>You will be able to use components from another Leanweb project just as how you use a local component by importing them. Please note all dependencies of dependency Leanweb projects need to be installed in the main project.</p>
+<p>
+   There are two ways you can use web components from another Leanweb project. One way is to include the .js file from
+   the <span class="text-highlight">dist/</span> directory of another Leanweb project. Insert the following line in the
+   <span class="text-highlight">index.html</span> or any component html template.
+</p>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;script src=&quot;demo.js&quot;&gt;&lt;/script&gt;
+   </code></pre>
+</div>
+<p>
+   And you are good to go. Now you could use any web components defined in the demo project in your project.
+</p>
+
+<p>
+   Another way is to import the source code from another Leanweb project into your project. Please note all dependencies
+   of dependency Leanweb projects need to be installed in the main project.</p>
 <ul>
    <li>
       <h4>when the dependency Leanweb project is installed as an npm package</h4>
