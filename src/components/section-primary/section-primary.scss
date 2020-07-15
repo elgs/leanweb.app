@@ -56,5 +56,11 @@
   }
   .browser {
     grid-area: browser;
+    .mainScreen {
+      span.this {
+        color: tomato;
+        font-style: italic;
+      }
+    }
   }
 }

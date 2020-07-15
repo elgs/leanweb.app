@@ -28,5 +28,6 @@ customElements.define('leanweb-app-section-primary',
          });
       }
       name = 'Leanweb';
+      me = this;
    }
 );

@@ -17,6 +17,7 @@
    <pre><code class="html">
   
   Hello &lt;span lw&gt;name&lt;/span&gt;!
+  this is an instance of &lt;span lw&gt;me&lt;/span&gt;.
 
 
 </code></pre>
@@ -26,6 +27,7 @@
    <pre><code class="javascript">
    class extends LWElement {
       name = 'Leanweb';
+      me = this;
    }
 
 </code></pre>
@@ -34,6 +36,7 @@
    <leanweb-app-terminal>
       <div class="mainScreen">
          Hello <span lw>name</span>!
+         <span class="this">this</span> is an instance of <span class="this" lw>me</span>.
       </div>
    </leanweb-app-terminal>
 </div>
