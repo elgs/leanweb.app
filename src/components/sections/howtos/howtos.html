@@ -125,6 +125,20 @@
       class="text-highlight">demo-root</span> component.
 </p>
 
+<h2>How to update DOMs of all components?</h2>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   LWElement.eventBus.dispatchEvent('update');
+   
+   </code></pre>
+</div>
+<p>
+   All instances of LWElement listen on <span class="text-highlight">update</span> event to update their DOMs.
+   Therefore, simply dispatching the <span class="text-highlight">update</span> event will trigger DOMs of all
+   components to update themselves. Only changed part will get updated.
+</p>
+
 <h2>How to do component routing?</h2>
 <div class="code-block">
    <span class="label">HTML</span>
