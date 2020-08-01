@@ -20,5 +20,17 @@ customElements.define('leanweb-app-sections-code-14',
             hljs.highlightBlock(block);
          });
       }
+
+      updateAll() {
+         LWElement.updateComponents();
+      }
+
+      updateRed() {
+         LWElement.updateComponents('leanweb-app-sections-code-14-dest-red');
+      }
+
+      updateBlue() {
+         LWElement.updateComponents('leanweb-app-sections-code-14-dest-blue');
+      }
    }
 );

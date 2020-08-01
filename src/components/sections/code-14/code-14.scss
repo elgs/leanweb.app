@@ -11,9 +11,20 @@
     margin: 3px;
   }
 
-  .src {
+  .controls {
     display: flex;
     justify-content: center;
+    .buttons {
+      width: 410px;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid gray;
+      display: flex;
+      justify-content: center;
+      button {
+        margin: 0 5px;
+      }
+    }
   }
 
   .dest {

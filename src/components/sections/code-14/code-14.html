@@ -46,11 +46,108 @@
 
 <h3>An Example</h3>
 
+<div class="code-block">
+   <span class="label">root.html</span>
+   <pre><code class="html">
+   &lt;div class=&quot;buttons&quot;&gt;
+      &lt;button lw-on:click=&quot;updateAll()&quot;&gt;Update All&lt;/button&gt;
+      &lt;button lw-on:click=&quot;updateRed()&quot;&gt;Update Red&lt;/button&gt;
+      &lt;button lw-on:click=&quot;updateBlue()&quot;&gt;Update Blue&lt;/button&gt;
+   &lt;/div&gt;
+
+   &lt;div class=&quot;red&quot;&gt;
+      &lt;demo-dest-red&gt;&lt;/demo-dest-red&gt;
+      &lt;demo-dest-red&gt;&lt;/demo-dest-red&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;blue&quot;&gt;
+      &lt;demo-dest-blue&gt;&lt;/demo-dest-blue&gt;
+      &lt;demo-dest-blue&gt;&lt;/demo-dest-blue&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">root.js</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      updateAll() {
+         // update all components
+         LWElement.updateComponents();
+
+         // update components by exact tag names
+         // LWElement.updateComponents('demo-dest-red', 'demo-dest-blue');
+      }
+
+      updateRed() {
+         LWElement.updateComponents('demo-dest-red');
+      }
+
+      updateBlue() {
+         LWElement.updateComponents('demo-dest-blue');
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">dest-red.html</span>
+   <pre><code class="html">
+   &lt;div lw&gt;time ?? '-'&lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">dest-red.js</span>
+   <pre><code class="javascript">
+   customElements.define('demo-dest-red',
+   class extends LWElement {
+      constructor() {
+         super(ast);
+         setInterval(() => {
+            this.time = new Date(Date.now()).toLocaleString();
+         }, 1000);
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">dest-blue.html</span>
+   <pre><code class="html">
+   &lt;div lw&gt;time ?? '-'&lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">dest-blue.js</span>
+   <pre><code class="javascript">
+   customElements.define('demo-dest-blue',
+   class extends LWElement {
+      constructor() {
+         super(ast);
+         setInterval(() => {
+            this.time = new Date(Date.now()).toLocaleString();
+         }, 1000);
+      }
+   }
+
+</code></pre>
+</div>
+
 <div class="browser">
    <leanweb-app-terminal>
       <div class="mainScreen">
-         <div class="src">
-            <leanweb-app-sections-code-14-src></leanweb-app-sections-code-14-src>
+         <div class="controls">
+            <div class="buttons">
+               <button lw-on:click="updateAll()">Update All</button>
+               <button lw-on:click="updateRed()">Update Red</button>
+               <button lw-on:click="updateBlue()">Update Blue</button>
+            </div>
          </div>
          <div class="dest">
             <leanweb-app-sections-code-14-dest-red></leanweb-app-sections-code-14-dest-red>
