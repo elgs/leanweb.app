@@ -1,6 +1,6 @@
 {
   "name": "leanweb-app",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "components": [
     "root",
     "terminal",
@@ -25,7 +25,11 @@
     "sections/code-12/sub",
     "sections/code-13",
     "sections/commands",
-    "sections/howtos"
+    "sections/howtos",
+    "sections/code-14",
+    "sections/code-14/src",
+    "sections/code-14/dest-red",
+    "sections/code-14/dest-blue"
   ],
   "resources": [
     "resources/"

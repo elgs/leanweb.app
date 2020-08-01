@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  padding: 20px 0;
+  border-top: 1px solid tomato;
+
+  div.code-block {
+    margin-bottom: 20px;
+  }
+
+  input {
+    margin: 3px;
+  }
+
+  .src {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dest {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    * {
+      box-sizing: border-box;
+      margin: 0 5px;
+      padding: 5px;
+      width: 200px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
