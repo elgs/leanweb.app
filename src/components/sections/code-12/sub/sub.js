@@ -7,7 +7,7 @@ customElements.define('leanweb-app-sections-code-12-sub',
          super(ast);
       }
       sub() {
-         this.listener = LWElement.eventBus.addEventListener('time', event => {
+         this.listener = leanweb.eventBus.addEventListener('time', event => {
             this.time = event.data;
             this.update();
          });
@@ -15,7 +15,7 @@ customElements.define('leanweb-app-sections-code-12-sub',
       }
 
       unsub() {
-         LWElement.eventBus.removeEventListener(this.listener);
+         leanweb.eventBus.removeEventListener(this.listener);
          this.subscribed = false;
       }
    }

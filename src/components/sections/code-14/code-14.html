@@ -24,13 +24,16 @@
    <li>
       any network response is received;
    </li>
+   <li>
+      <span class="text-highlight">setTimeout</span> and <span class="text-highlight">setInterval</span> callbacks;
+   </li>
 </ul>
 
 <h3>Update all components app wide</h3>
 <div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
-   LWElement.updateComponents();
+   leanweb.updateComponents();
 
 </code></pre>
 </div>
@@ -39,7 +42,7 @@
 <div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
-   LWElement.updateComponents('demo-root', 'demo-login');
+   leanweb.updateComponents('demo-root', 'demo-login');
 
 </code></pre>
 </div>
@@ -73,18 +76,18 @@
    class extends LWElement {
       updateAll() {
          // update all components
-         LWElement.updateComponents();
+         leanweb.updateComponents();
 
          // update components by exact tag names
-         // LWElement.updateComponents('demo-dest-red', 'demo-dest-blue');
+         // leanweb.updateComponents('demo-dest-red', 'demo-dest-blue');
       }
 
       updateRed() {
-         LWElement.updateComponents('demo-dest-red');
+         leanweb.updateComponents('demo-dest-red');
       }
 
       updateBlue() {
-         LWElement.updateComponents('demo-dest-blue');
+         leanweb.updateComponents('demo-dest-blue');
       }
    }
 

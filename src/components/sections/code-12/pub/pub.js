@@ -7,7 +7,7 @@ customElements.define('leanweb-app-sections-code-12-pub',
          super(ast);
          setInterval(() => {
             this.time = new Date(Date.now()).toLocaleString();
-            LWElement.eventBus.dispatchEvent('time', this.time);
+            leanweb.eventBus.dispatchEvent('time', this.time);
             this.update();
          }, 1000);
       }

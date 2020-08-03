@@ -17,7 +17,7 @@
          super(ast);
          setInterval(() => {
             this.time = new Date(Date.now()).toLocaleString();
-            LWElement.eventBus.dispatchEvent('time', this.time);
+            leanweb.eventBus.dispatchEvent('time', this.time);
             this.update();
          }, 1000);
       }
@@ -45,7 +45,7 @@
    <pre><code class="javascript">
    class extends LWElement {
       sub() {
-         this.listener = LWElement.eventBus.addEventListener('time', event => {
+         this.listener = leanweb.eventBus.addEventListener('time', event => {
             this.time = event.data;
             this.update();
          });
@@ -53,7 +53,7 @@
       }
 
       unsub() {
-         LWElement.eventBus.removeEventListener(this.listener);
+         leanweb.eventBus.removeEventListener(this.listener);
          this.subscribed = false;
       }
    }

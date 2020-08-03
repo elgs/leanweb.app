@@ -22,15 +22,15 @@ customElements.define('leanweb-app-sections-code-14',
       }
 
       updateAll() {
-         LWElement.updateComponents();
+         leanweb.updateComponents();
       }
 
       updateRed() {
-         LWElement.updateComponents('leanweb-app-sections-code-14-dest-red');
+         leanweb.updateComponents('leanweb-app-sections-code-14-dest-red');
       }
 
       updateBlue() {
-         LWElement.updateComponents('leanweb-app-sections-code-14-dest-blue');
+         leanweb.updateComponents('leanweb-app-sections-code-14-dest-blue');
       }
    }
 );
