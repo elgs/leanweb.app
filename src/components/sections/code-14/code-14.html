@@ -106,12 +106,13 @@
    <span class="label">dest-red.js</span>
    <pre><code class="javascript">
    customElements.define('demo-dest-red',
-   class extends LWElement {
-      constructor() {
-         super(ast);
-         setInterval(() => {
-            this.time = new Date(Date.now()).toLocaleString();
-         }, 1000);
+      class extends LWElement {
+         constructor() {
+            super(ast);
+            setInterval(() => {
+               this.time = new Date(Date.now()).toLocaleString();
+            }, 1000);
+         }
       }
    }
 
@@ -130,12 +131,13 @@
    <span class="label">dest-blue.js</span>
    <pre><code class="javascript">
    customElements.define('demo-dest-blue',
-   class extends LWElement {
-      constructor() {
-         super(ast);
-         setInterval(() => {
-            this.time = new Date(Date.now()).toLocaleString();
-         }, 1000);
+      class extends LWElement {
+         constructor() {
+            super(ast);
+            setInterval(() => {
+               this.time = new Date(Date.now()).toLocaleString();
+            }, 1000);
+         }
       }
    }
 
