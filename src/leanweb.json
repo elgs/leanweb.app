@@ -1,6 +1,6 @@
 {
   "name": "leanweb-app",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "components": [
     "root",
     "terminal",
