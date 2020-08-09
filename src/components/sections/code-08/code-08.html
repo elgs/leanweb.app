@@ -4,7 +4,7 @@
    <pre><code class="html">
    &lt;button lw-on:click='chooseTwo()'&gt;Choose Two&lt;/button&gt;
    &lt;div lw-for=&quot;item, $index in items&quot;&gt;
-      &lt;input type=&quot;radio&quot; name=&quot;pickOne&quot; lw-bind:value=&quot;item&quot; lw-model=&quot;picked&quot;&gt;
+      &lt;input type=&quot;radio&quot; lw-bind:value=&quot;item&quot; lw-model=&quot;picked&quot;&gt;
       &lt;span lw&gt;item&lt;/span&gt;
    &lt;/div&gt;
    &lt;span lw&gt;picked&lt;/span&gt;
@@ -19,7 +19,6 @@
       chooseTwo() {
          this.picked = 'two';
       }
-      picked;
    }
 
 </code></pre>
@@ -30,7 +29,7 @@
       <div class="mainScreen">
          <button lw-on:click='chooseTwo()'>Choose Two</button>
          <div lw-for="item, $index in items">
-            <input type="radio" name="pickOne" lw-bind:value="item" lw-model="picked"><span lw>item</span>
+            <input type="radio" lw-bind:value="item" lw-model="picked"><span lw>item</span>
          </div>
          <span lw>picked</span>
       </div>
