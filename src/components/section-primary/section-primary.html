@@ -1,42 +1,81 @@
-<div class="left">
-   <leanweb-app-terminal>
-      <div class="mainScreen">
-         <p class="line" lw lw-for="line in terminalData">line</p>
-      </div>
-   </leanweb-app-terminal>
-</div>
-<div class="middle">
-   <h1>Leanweb</h1>
-   <p>Build tools for Web Component projects</p>
-   <p>DOM first, no magic</p>
-   <p>Lean, 4kb runtime gzipped</p>
+<div class="one">
+   <div class="left">
+      <leanweb-app-terminal>
+         <div class="mainScreen">
+            <p class="line" lw lw-for="line in terminalData">line</p>
+         </div>
+      </leanweb-app-terminal>
+   </div>
+   <div class="middle">
+      <h1>Leanweb</h1>
+      <p>Build tools for Web Component projects</p>
+      <p>DOM first, no magic</p>
+      <p>Lean, 4kb runtime gzipped</p>
+   </div>
 </div>
 
-<div class="code-block html">
-   <span class="label">HTML</span>
-   <pre><code class="html">
+<div class="two">
+   <div class="code">
+      <div class="code-block html">
+         <span class="label">HTML</span>
+         <pre><code class="html">
   
   Hello &lt;span lw&gt;name&lt;/span&gt;!
   this is an instance of &lt;span lw&gt;me&lt;/span&gt;.
 
 
-</code></pre>
-</div>
-<div class="code-block javascript">
-   <span class="label">Javascript</span>
-   <pre><code class="javascript">
+         </code></pre>
+      </div>
+      <div class="code-block javascript">
+         <span class="label">Javascript</span>
+         <pre><code class="javascript">
    class extends LWElement {
       name = 'Leanweb';
       me = this;
    }
 
-</code></pre>
-</div>
-<div class="browser">
-   <leanweb-app-terminal>
-      <div class="mainScreen">
-         Hello <span lw>name</span>!
-         <span class="this">this</span> is an instance of <span class="this" lw>me</span>.
+         </code></pre>
       </div>
-   </leanweb-app-terminal>
+   </div>
+
+   <div class="browser">
+      <leanweb-app-terminal>
+         <div class="mainScreen">
+            Hello <span lw>name</span>!
+            <span class="this">this</span> is an instance of <span class="this" lw>me</span>.
+         </div>
+      </leanweb-app-terminal>
+   </div>
+</div>
+
+<div class="three">
+   <div class="code">
+      <div class="code-block html">
+         <span class="label">HTML</span>
+         <pre><code class="html">
+  
+   Radius: &lt;input type=&quot;number&quot; lw-model=&quot;r&quot;&gt;
+   Area: &lt;span lw&gt;Math.PI * r * r&lt;/span&gt;
+
+         </code></pre>
+      </div>
+      <div class="code-block javascript">
+         <span class="label">Javascript</span>
+         <pre><code class="javascript">
+   class extends LWElement {
+      r = 1;
+   }
+
+         </code></pre>
+      </div>
+   </div>
+
+   <div class="browser">
+      <leanweb-app-terminal>
+         <div class="mainScreen">
+            Radius: <input type="number" lw-model="r">
+            Area: <span lw>Math.PI*r*r</span>
+         </div>
+      </leanweb-app-terminal>
+   </div>
 </div>
