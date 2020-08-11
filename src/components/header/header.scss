@@ -19,6 +19,13 @@
       font-weight: 400;
       font-size: 22px;
     }
+    span.version {
+      margin-left: 10px;
+      color: tomato;
+      font-size: 12px;
+      top: -2px;
+      position: relative;
+    }
   }
 
   div.right {
@@ -30,7 +37,7 @@
     svg.slack {
       width: 32px;
     }
-    
+
     svg.npm {
       fill: lightgray;
       width: 32px;
