@@ -3,7 +3,7 @@
    <span class="label">HTML</span>
    <pre><code class="html">
    &lt;input type=&quot;text&quot; lw-model=&quot;name&quot;&gt;
-   &lt;button lw-on:click=&quot;resetName()&quot;&gt; Reset Name &lt;/button&gt;
+   &lt;button lw-on:click=&quot;resetName($event)&quot;&gt; Reset Name &lt;/button&gt;
    &lt;span lw&gt;name&lt;/span&gt;
 
 </code></pre>
@@ -12,7 +12,7 @@
    <span class="label">Javascript</span>
    <pre><code class="javascript">
    class extends LWElement {
-      resetName() {
+      resetName(event) {
          this.name = 'Leanweb';
       }
    }
@@ -24,7 +24,7 @@
    <leanweb-app-terminal>
       <div class="mainScreen">
          <input type="text" lw-model="name">
-         <button lw-on:click="resetName()"> Reset Name </button>
+         <button lw-on:click="resetName($event)"> Reset Name </button>
          <span lw>name</span>
       </div>
    </leanweb-app-terminal>

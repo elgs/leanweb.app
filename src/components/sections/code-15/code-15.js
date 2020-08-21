@@ -7,7 +7,7 @@ import xml from 'highlight.js/lib/languages/xml';
 import scss from 'highlight.js/lib/languages/scss';
 import agate from 'highlight.js/scss/agate.scss';
 
-customElements.define('leanweb-app-sections-code-03',
+customElements.define('leanweb-app-sections-code-15',
    class extends LWElement {  // LWElement extends HTMLElement
       constructor() {
          super(ast);
@@ -20,8 +20,5 @@ customElements.define('leanweb-app-sections-code-03',
          });
       }
 
-      resetName(event) {
-         this.name = 'Leanweb';
-      }
    }
 );

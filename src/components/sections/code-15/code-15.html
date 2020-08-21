@@ -1,4 +1,4 @@
-<h2>lw-input:</h2>
+<h2>Parent to listen on child's custom events</h2>
 <p>
    The following example shows how parent and child components share data by passing data with <span
       class='text-highlight'>lw-input:</span>.
@@ -8,9 +8,8 @@
    <pre><code class="html">
    &lt;div class=&quot;parent&quot;&gt;
       &lt;span&gt;Parent&lt;/span&gt;
-      &lt;span lw&gt;item?.quantity&lt;/span&gt;
-      &lt;button lw-on:click=&quot;update()&quot;&gt;Update Quantity&lt;/button&gt;
-      &lt;demo-child lw-input:item='item'&gt;&lt;/demo-child&gt;
+      &lt;span lw&gt;quantity&lt;/span&gt;
+      &lt;demo-child lw-on:add=&quot;onAdd($event)&quot; &lt;/demo-child&gt;
    &lt;/div&gt;
 
 </code></pre>
@@ -20,10 +19,11 @@
    <span class="label">parent.js</span>
    <pre><code class="javascript">
    class extends LWElement {
-      item = {
-         name: 'Banana',
-         quantity: 1,
-      };
+      quantity = 0;
+      
+      onAdd(event) {
+         this.quantity += event.detail;
+      }
    }
 
 </code></pre>
@@ -34,10 +34,9 @@
    <pre><code class="html">
    &lt;div class='child'&gt;
       &lt;span&gt;Child&lt;/span&gt;
-      &lt;span lw&gt;item?.quantity&lt;/span&gt;
       &lt;div class=&quot;buttons&quot;&gt;
-         &lt;button lw-on:click=&quot;addOne()&quot;&gt;Add One&lt;/button&gt;
-         &lt;button lw-on:click=&quot;removeOne()&quot;&gt;Remove One&lt;/button&gt;
+         &lt;button lw-on:click=&quot;add(1)&quot;&gt;Add One&lt;/button&gt;
+         &lt;button lw-on:click=&quot;add(-1)&quot;&gt;Remove One&lt;/button&gt;
       &lt;/div&gt;
    &lt;/div&gt;
 
@@ -48,12 +47,10 @@
    <span class="label">child.js</span>
    <pre><code class="javascript">
    class extends LWElement {
-      addOne() {
-         this.item.quantity += 1;
-      }
-
-      removeOne() {
-         this.item.quantity -= 1;
+      add(by) {
+         this.dispatchEvent(new CustomEvent('add', {
+            detail: by
+         }))
       }
    }
 
@@ -63,7 +60,7 @@
 <div class="browser">
    <leanweb-app-terminal>
       <div class="mainScreen">
-         <leanweb-app-sections-code-06-parent></leanweb-app-sections-code-06-parent>
+         <leanweb-app-sections-code-15-parent></leanweb-app-sections-code-15-parent>
       </div>
    </leanweb-app-terminal>
 </div>
