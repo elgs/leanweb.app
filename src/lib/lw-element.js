@@ -234,8 +234,10 @@ export default class LWElement extends HTMLElement {
             eventNode.addEventListener(interpolation.lwValue, (event => {
                const eventContext = { '$event': event };
                const parsed = parser.evaluate(interpolation.ast, [eventContext, ...context], interpolation.loc);
-               this.update();
-               return parsed;
+               if (typeof parsed?.[0]?.then !== 'function') {
+                  this.update();
+               }
+               return parsed[0];
             }).bind(this));
          }
       }
@@ -356,10 +358,14 @@ export default class LWElement extends HTMLElement {
       const hasLwFalse = ifNode.hasAttribute('lw-false');
       if (parsed[0]) {
          hasLwFalse && ifNode.removeAttribute('lw-false');
-         ifNode.turnedOn?.call(ifNode);
+         setTimeout(() => {
+            ifNode.turnedOn?.call(ifNode);
+         });
       } else {
          !hasLwFalse && ifNode.setAttribute('lw-false', '');
-         ifNode.turnedOff?.call(ifNode);
+         setTimeout(() => {
+            ifNode.turnedOff?.call(ifNode);
+         });
       }
    }
 
@@ -391,10 +397,14 @@ export default class LWElement extends HTMLElement {
             const interpolation = this.ast[attrValue];
             const parsed = parser.evaluate(interpolation.ast, context, interpolation.loc);
 
-            if (!parsed[0]) {
-               bindNode.removeAttribute(interpolation.lwValue);
+            if (parsed[0]) {
+               if (interpolation.lwValue === 'class') {
+                  bindNode.classList.add(parsed[0]);
+               } else {
+                  bindNode.setAttribute(interpolation.lwValue, parsed[0]);
+               }
             } else {
-               bindNode.setAttribute(interpolation.lwValue, parsed[0]);
+               bindNode.removeAttribute(interpolation.lwValue);
             }
          }
       }
