@@ -20,7 +20,7 @@ customElements.define('leanweb-app-sections-code-03',
          });
       }
 
-      resetName(event) {
+      resetName(event, node) {
          this.name = 'Leanweb';
       }
    }
