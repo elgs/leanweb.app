@@ -11,7 +11,7 @@
    "license": "MIT",
    "devDependencies": {
       "@babel/runtime": "^7.12.5",
-      "electron": "^10.1.5",
-      "highlight.js": "^10.3.2"
+      "electron": "^11.0.2",
+      "highlight.js": "^10.4.0"
    }
 }
