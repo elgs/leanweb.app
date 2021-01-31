@@ -13,7 +13,7 @@ customElements.define('leanweb-app-section-primary',
          super(ast);
 
          this.terminalData = [
-            'npm i leanweb -g --legacy-peer-deps',
+            'npm i leanweb -g',
             'mkdir demo && cd demo',
             'lw init',
             'lw serve',
