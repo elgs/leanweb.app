@@ -3,10 +3,12 @@
    <span class="label">HTML</span>
    <pre><code class="html">
    &lt;button lw-on:click=&quot;reset()&quot;&gt;Reset&lt;/button&gt;
-   &lt;div lw-for=&quot;item, $i in array2d&quot;&gt;
-      &lt;span lw-for=&quot;item1, $j in array2d[$i]&quot;&gt;
-         &lt;input type=&quot;number&quot; lw-model=&quot;array2d[$i][$j]&quot;&gt;
-         &lt;span lw&gt;item1&lt;/span&gt;
+   &lt;div lw-for=&quot;row in array2d&quot;&gt;
+      &lt;span lw-for=&quot;cell, $i in row&quot;&gt;
+         &lt;!-- cell is primitive type which is passed by value, --&gt;
+         &lt;!-- so lw-model uses row[$i] which is passed by reference --&gt;
+         &lt;input type=&quot;number&quot; lw-model=&quot;row[$i]&quot;&gt;
+         &lt;span lw&gt;cell&lt;/span&gt;
       &lt;/span&gt;
    &lt;/div&gt;
 
@@ -34,10 +36,12 @@
    <leanweb-app-terminal>
       <div class="mainScreen">
          <button lw-on:click="reset()">Reset</button>
-         <div lw-for="item, $i in array2d">
-            <span lw-for="item1, $j in array2d[$i]">
-               <input type="number" lw-model="array2d[$i][$j]">
-               <span lw>item1</span>
+         <div lw-for="row in array2d">
+            <span lw-for="cell, $i in row">
+               <!-- cell is primitive type which is passed by value, -->
+               <!-- so lw-model uses row[$i] which is passed by reference -->
+               <input type="number" lw-model="row[$i]">
+               <span lw>cell</span>
             </span>
          </div>
       </div>

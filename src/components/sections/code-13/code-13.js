@@ -17,7 +17,7 @@ customElements.define('leanweb-app-sections-code-13',
          hljs.registerLanguage('scss', scss);
          hljs.registerLanguage('javascript', javascript);
          this.shadowRoot.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
+            hljs.highlightElement(block);
          });
       }
       array2d = [

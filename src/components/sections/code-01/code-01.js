@@ -16,7 +16,7 @@ customElements.define('leanweb-app-sections-code-01',
          hljs.registerLanguage('html', xml);
          hljs.registerLanguage('scss', scss);
          this.shadowRoot.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
+            hljs.highlightElement(block);
          });
       }
 

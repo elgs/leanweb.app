@@ -13,7 +13,7 @@ customElements.define('leanweb-app-sections-howtos',
          super.applyStyles(agate);
          hljs.registerLanguage('javascript', javascript);
          this.shadowRoot.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
+            hljs.highlightElement(block);
          });
       }
    }
