@@ -10,7 +10,7 @@ customElements.define('leanweb-app-sections-code-15-child',
       add(by) {
          this.dispatchEvent(new CustomEvent('add', {
             detail: by
-         }))
+         }));
       }
    }
 );
