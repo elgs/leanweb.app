@@ -1,8 +1,8 @@
 import LWElement from './../../../lib/lw-element.js';
 import ast from './ast.js';
 
-import hljs from 'highlight.js/lib/core.js';
-import javascript from 'highlight.js/lib/languages/javascript.js';
+import hljs from '/node_modules/highlight.js/lib/core.js';
+import javascript from '/node_modules/highlight.js/lib/languages/javascript.js';
 import agate from 'highlight.js/scss/agate.scss';
 
 customElements.define('leanweb-app-sections-howtos',

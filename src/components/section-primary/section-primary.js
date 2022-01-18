@@ -1,10 +1,10 @@
 import LWElement from './../../lib/lw-element.js';
 import ast from './ast.js';
 
-import hljs from 'highlight.js/lib/core.js';
-import javascript from 'highlight.js/lib/languages/javascript.js';
-import xml from 'highlight.js/lib/languages/xml.js';
-import scss from 'highlight.js/lib/languages/scss.js';
+import hljs from '/node_modules/highlight.js/lib/core.js';
+import javascript from '/node_modules/highlight.js/lib/languages/javascript.js';
+import xml from '/node_modules/highlight.js/lib/languages/xml.js';
+import scss from '/node_modules/highlight.js/lib/languages/scss.js';
 // import agate from 'highlight.js/scss/agate.scss';
 
 customElements.define('leanweb-app-section-primary',
