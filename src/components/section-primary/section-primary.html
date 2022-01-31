@@ -21,7 +21,7 @@
          <pre><code class="html">
   
   Hello &lt;span lw&gt;name&lt;/span&gt;!
-  &lt;span lw&gt;me instanceof HTMLElement&lt;/span&gt;
+  &lt;span lw&gt;self instanceof HTMLElement&lt;/span&gt;
 
 
          </code></pre>
@@ -31,7 +31,7 @@
          <pre><code class="javascript">
    class extends LWElement {
       name = 'Leanweb';
-      me = this;
+      // self = this; defined in parent class
    }
 
          </code></pre>
@@ -42,7 +42,7 @@
       <leanweb-app-terminal>
          <div class="mainScreen">
             Hello <span lw>name</span>!
-            <span class="this" lw>me instanceof HTMLElement</span>
+            <span class="this" lw>self instanceof HTMLElement</span>
          </div>
       </leanweb-app-terminal>
    </div>

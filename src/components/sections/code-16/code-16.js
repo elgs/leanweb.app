@@ -1,25 +1,17 @@
-import LWElement from './../../lib/lw-element.js';
+import LWElement from './../../../lib/lw-element.js';
 import ast from './ast.js';
 
 import hljs from '/node_modules/highlight.js/lib/core.js';
 import javascript from '/node_modules/highlight.js/lib/languages/javascript.js';
 import xml from '/node_modules/highlight.js/lib/languages/xml.js';
 import scss from '/node_modules/highlight.js/lib/languages/scss.js';
-// import agate from 'highlight.js/scss/agate.scss';
+import agate from 'highlight.js/scss/agate.scss';
 
-customElements.define('leanweb-app-section-primary',
+customElements.define('leanweb-app-sections-code-16',
    class extends LWElement {  // LWElement extends HTMLElement
       constructor() {
          super(ast);
-
-         this.terminalData = [
-            'npm i leanweb -g',
-            'mkdir demo && cd demo',
-            'lw init',
-            'lw serve',
-         ];
-
-         // super.applyStyles(agate);
+         super.applyStyles(agate);
          hljs.registerLanguage('javascript', javascript);
          hljs.registerLanguage('html', xml);
          hljs.registerLanguage('scss', scss);
@@ -27,9 +19,6 @@ customElements.define('leanweb-app-section-primary',
             hljs.highlightElement(block);
          });
       }
-      name = 'Leanweb';
-      // self = this; defined in parent class
 
-      r = 1;
    }
 );

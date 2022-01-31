@@ -1,6 +1,6 @@
 {
   "name": "leanweb-app",
-  "version": "1.1.1",
+  "version": "1.1.4",
   "components": [
     "root",
     "terminal",
@@ -31,7 +31,10 @@
     "sections/code-14/dest-blue",
     "sections/code-15",
     "sections/code-15/parent",
-    "sections/code-15/child"
+    "sections/code-15/child",
+    "sections/code-16",
+    "sections/code-16/parent",
+    "sections/code-16/child"
   ],
   "resources": [
     "resources/"

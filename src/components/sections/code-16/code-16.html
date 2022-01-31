@@ -1,0 +1,61 @@
+<h2>Child to hold a reference to the parent</h2>
+<div class="code-block">
+   <span class="label">parent.html</span>
+   <pre><code class="html">
+   &lt;div class=&quot;parent&quot;&gt;
+      &lt;span&gt;Parent&lt;/span&gt;
+      &lt;span lw&gt;quantity&lt;/span&gt;
+      &lt;demo-child lw-input:parent=&quot;self&quot; &lt;/demo-child&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">parent.js</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      quantity = 0;
+      
+      add(by) {
+         this.quantity += by;
+         this.update();
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">child.html</span>
+   <pre><code class="html">
+   &lt;div class='child'&gt;
+      &lt;span&gt;Child&lt;/span&gt;
+      &lt;div class=&quot;buttons&quot;&gt;
+         &lt;button lw-on:click=&quot;add(1)&quot;&gt;Add One&lt;/button&gt;
+         &lt;button lw-on:click=&quot;add(-1)&quot;&gt;Remove One&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+
+<div class="code-block">
+   <span class="label">child.js</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      add(by) {
+         this.parent.add(by);
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <leanweb-app-sections-code-16-parent></leanweb-app-sections-code-16-parent>
+      </div>
+   </leanweb-app-terminal>
+</div>
