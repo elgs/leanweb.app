@@ -12,6 +12,6 @@
    "devDependencies": {
       "@babel/runtime": "^7.17.9",
       "electron": "^18.0.3",
-      "highlight.js": "^11.5.0"
+      "highlight.js": "^11.5.1"
    }
 }
