@@ -10,8 +10,8 @@
    "author": "Qian Chen",
    "license": "MIT",
    "devDependencies": {
-      "@babel/runtime": "^7.18.0",
-      "electron": "^18.2.4",
+      "@babel/runtime": "^7.18.3",
+      "electron": "^19.0.1",
       "highlight.js": "^11.5.1"
    }
 }
