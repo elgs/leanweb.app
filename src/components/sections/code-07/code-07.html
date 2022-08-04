@@ -1,4 +1,5 @@
 <h2>Working with Checkboxs</h2>
+<h3>Multiple chechboxes bound to an array</h3>
 <div class="code-block">
    <span class="label">HTML</span>
    <pre><code class="html">
@@ -37,6 +38,44 @@
             <input type="checkbox" lw-bind:value='item' lw-model="checkedValues"> <span lw>item</span>
          </div>
          <span lw>checkedValues</span>
+      </div>
+   </leanweb-app-terminal>
+</div>
+
+<h3>Single checkbox bound to a boolean value</h3>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;button lw-on:click='toggleCheckbox()'&gt;Toggle Checkbox&lt;/button&gt;
+   &lt;div&gt;
+      &lt;input type=&quot;checkbox&quot; lw-model=&quot;checked&quot;&gt;
+      &lt;span lw&gt;checked&lt;/span&gt;
+   &lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      checked = false;
+      toggleCheckbox() {
+         this.checked = !this.checked;
+         this.update();
+      }
+   }
+
+</code></pre>
+</div>
+
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen">
+         <button lw-on:click='toggleCheckbox()'>Toggle Checkbox</button>
+         <div>
+            <input type="checkbox" lw-model="checked">
+            <span lw>checked</span>
+         </div>
       </div>
    </leanweb-app-terminal>
 </div>

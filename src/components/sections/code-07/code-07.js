@@ -11,7 +11,7 @@ customElements.define('leanweb-app-sections-code-07',
    class extends LWElement {  // LWElement extends HTMLElement
       constructor() {
          super(ast);
-         
+
          hljs.registerLanguage('javascript', javascript);
          hljs.registerLanguage('html', xml);
          hljs.registerLanguage('scss', scss);
@@ -20,6 +20,7 @@ customElements.define('leanweb-app-sections-code-07',
          });
       }
 
+      // Multiple chechboxes bound to an array
       items = ['one', 'two', 'three'];
       toggleCheckboxes() {
          if (this.checkedValues.length) {
@@ -29,5 +30,12 @@ customElements.define('leanweb-app-sections-code-07',
          }
       }
       checkedValues = [];
+
+      // Single checkbox bound to a boolean value
+      checked = false;
+      toggleCheckbox() {
+         this.checked = !this.checked;
+         this.update();
+      }
    }
 );
