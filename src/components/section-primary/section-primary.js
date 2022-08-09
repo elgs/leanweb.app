@@ -26,7 +26,6 @@ customElements.define('leanweb-app-section-primary',
          });
       }
       name = 'Leanweb';
-      // self = this; defined in parent class
 
       r = 1;
    }
