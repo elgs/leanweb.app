@@ -35,7 +35,6 @@ customElements.define('leanweb-app-sections-code-07',
       checked = false;
       toggleCheckbox() {
          this.checked = !this.checked;
-         this.update();
       }
    }
 );
