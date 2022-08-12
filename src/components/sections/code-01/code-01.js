@@ -18,6 +18,6 @@ customElements.define('leanweb-app-sections-code-01',
          });
       }
 
-      name = 'Leanweb';
+      love = true;
    }
 );
