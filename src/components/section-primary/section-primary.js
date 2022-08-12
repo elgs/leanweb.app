@@ -25,7 +25,7 @@ customElements.define('leanweb-app-section-primary',
             hljs.highlightElement(block);
          });
       }
-      name = 'Leanweb';
+      world = 'Leanweb';
 
       r = 1;
    }
