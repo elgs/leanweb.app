@@ -11,7 +11,7 @@ customElements.define('leanweb-app-sections-code-04',
    class extends LWElement {  // LWElement extends HTMLElement
       constructor() {
          super(ast);
-         
+
          hljs.registerLanguage('javascript', javascript);
          hljs.registerLanguage('html', xml);
          hljs.registerLanguage('scss', scss);
@@ -21,8 +21,11 @@ customElements.define('leanweb-app-sections-code-04',
       }
 
       items = ['one', 'two', 'three'];
+      setActive(index) {
+         this.activeIndex = index;
+      }
       isActive(index) {
-         return index === 1;
+         return index === (this.activeIndex ?? 1);
       }
    }
 );

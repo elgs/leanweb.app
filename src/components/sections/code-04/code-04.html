@@ -1,15 +1,20 @@
 <h2>lw-class:</h2>
 <div class="code-block">
-   <span class="label">HTML</span>
-   <pre><code class="html">
-   &lt;div lw lw-for='item, $index in items' lw-class:active='isActive($index)'&gt;item&lt;/div&gt;
+  <span class="label">HTML</span>
+  <pre><code class="html">
+    &lt;div lw 
+      lw-for='item, $index in items' 
+      lw-class:active='isActive($index)' 
+      lw-on:click=&quot;setActive($index)&quot;&gt;
+      item
+    &lt;/div&gt;
 
 </code></pre>
 </div>
 
 <div class="code-block">
-   <span class="label">CSS/SCSS</span>
-   <pre><code class="scss">
+  <span class="label">CSS/SCSS</span>
+  <pre><code class="scss">
    .active {
       color: red;
    }
@@ -18,12 +23,15 @@
 </div>
 
 <div class="code-block">
-   <span class="label">Javascript</span>
-   <pre><code class="javascript">
+  <span class="label">Javascript</span>
+  <pre><code class="javascript">
    class extends LWElement {
       items = ['one', 'two', 'three'];
+      setActive(index) {
+        this.activeIndex = index;
+      }
       isActive(index) {
-         return index === 1;
+        return index === (this.activeIndex ?? 1);
       }
    }
 
@@ -31,9 +39,11 @@
 </div>
 
 <div class="browser">
-   <leanweb-app-terminal>
-      <div class="mainScreen">
-         <div lw lw-for='item, $index in items' lw-class:active='isActive($index)'>item</div>
+  <leanweb-app-terminal>
+    <div class="mainScreen">
+      <div lw lw-for='item, $index in items' lw-class:active='isActive($index)' lw-on:click="setActive($index)">
+        item
       </div>
-   </leanweb-app-terminal>
+    </div>
+  </leanweb-app-terminal>
 </div>
