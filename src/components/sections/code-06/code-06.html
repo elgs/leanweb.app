@@ -6,10 +6,10 @@
 <div class="code-block">
    <span class="label">parent.html</span>
    <pre><code class="html">
-   &lt;div class=&quot;parent&quot;&gt;
+   &lt;div class='parent'&gt;
       &lt;span&gt;Parent&lt;/span&gt;
       &lt;span lw&gt;item?.quantity&lt;/span&gt;
-      &lt;button lw-on:click=&quot;update()&quot;&gt;Update Quantity&lt;/button&gt;
+      &lt;button lw-on:click='update()'&gt;Update Quantity&lt;/button&gt;
       &lt;demo-child lw-input:item='item'&gt;&lt;/demo-child&gt;
    &lt;/div&gt;
 
@@ -35,9 +35,9 @@
    &lt;div class='child'&gt;
       &lt;span&gt;Child&lt;/span&gt;
       &lt;span lw&gt;item?.quantity&lt;/span&gt;
-      &lt;div class=&quot;buttons&quot;&gt;
-         &lt;button lw-on:click=&quot;addOne()&quot;&gt;Add One&lt;/button&gt;
-         &lt;button lw-on:click=&quot;removeOne()&quot;&gt;Remove One&lt;/button&gt;
+      &lt;div class='buttons'&gt;
+         &lt;button lw-on:click='addOne()'&gt;Add One&lt;/button&gt;
+         &lt;button lw-on:click='removeOne()'&gt;Remove One&lt;/button&gt;
       &lt;/div&gt;
    &lt;/div&gt;
 

@@ -2,12 +2,12 @@
 <div class="code-block">
    <span class="label">HTML</span>
    <pre><code class="html">
-   &lt;button lw-on:click=&quot;reset()&quot;&gt;Reset&lt;/button&gt;
-   &lt;div lw-for=&quot;row in array2d&quot;&gt;
-      &lt;span lw-for=&quot;cell, $i in row&quot;&gt;
+   &lt;button lw-on:click='reset()'&gt;Reset&lt;/button&gt;
+   &lt;div lw-for='row in array2d'&gt;
+      &lt;span lw-for='cell, $i in row'&gt;
          &lt;!-- cell is primitive type which is passed by value, --&gt;
          &lt;!-- so lw-model uses row[$i] which is passed by reference --&gt;
-         &lt;input type=&quot;number&quot; lw-model=&quot;row[$i]&quot;&gt;
+         &lt;input type='number' lw-model='row[$i]'&gt;
          &lt;span lw&gt;cell&lt;/span&gt;
       &lt;/span&gt;
    &lt;/div&gt;
