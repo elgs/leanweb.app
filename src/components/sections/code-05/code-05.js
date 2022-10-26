@@ -20,7 +20,7 @@ customElements.define('leanweb-app-sections-code-05',
          });
       }
 
-      imgSrc = 'https://leanweb.app/images/az.gif';
+      imgSrc = 'https://leanweb.app/resources/images/arizona.jpg';
       imageWidth = 400;
       title = 'Beautiful Arizona';
    }
