@@ -1,10 +1,10 @@
 import LWElement from './../../../lib/lw-element.js';
 import ast from './ast.js';
 
-import hljs from '/node_modules/highlight.js/lib/core.js';
-import javascript from '/node_modules/highlight.js/lib/languages/javascript.js';
-import xml from '/node_modules/highlight.js/lib/languages/xml.js';
-import scss from '/node_modules/highlight.js/lib/languages/scss.js';
+import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/core.min.js';
+import javascript from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/languages/javascript.min.js';
+import xml from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/languages/xml.min.js';
+import scss from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/languages/scss.min.js';
 
 
 customElements.define('leanweb-app-sections-code-12',
