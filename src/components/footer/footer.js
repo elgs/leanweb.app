@@ -7,6 +7,10 @@ customElements.define('leanweb-app-footer',
          super(ast);
       }
 
+      getFullYear() {
+         return new Date().getFullYear();
+      }
+
       // derived from LWElement
       // domReady() {
       //    console.log('Dom is ready');
