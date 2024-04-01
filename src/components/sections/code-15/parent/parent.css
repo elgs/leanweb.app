@@ -6,11 +6,11 @@
    display: grid;
    margin-top: 20px;
  
-   & span {
+   span {
      margin: auto;
    }
  
-   & button {
+   button {
      margin: auto;
    }
  }

@@ -6,7 +6,7 @@
   display: grid;
   margin-top: 20px;
 
-  & span {
+  span {
     margin: auto;
   }
 }

@@ -12,7 +12,7 @@
 
   background-color: #fafafa;
 
-  & div.center {
+  div.center {
     grid-column: 2/10;
     grid-row: 1;
     align-items: center;

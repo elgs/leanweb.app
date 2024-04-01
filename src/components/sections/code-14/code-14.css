@@ -20,7 +20,7 @@ input {
     display: flex;
     justify-content: center;
 
-    & button {
+    button {
       margin: 0 5px;
     }
   }
