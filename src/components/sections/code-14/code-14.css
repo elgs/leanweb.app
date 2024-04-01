@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  padding: 20px 0;
+  border-top: 1px solid tomato;
+}
+
+input {
+  margin: 3px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+
+  .buttons {
+    width: 410px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+
+    & button {
+      margin: 0 5px;
+    }
+  }
+}
+
+.dest {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  * {
+    box-sizing: border-box;
+    margin: 0 5px;
+    padding: 5px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+  }
+}
