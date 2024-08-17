@@ -82,6 +82,22 @@
    <span class="text-highlight">port=9999 lw s</span> to listen on port 9999.
 </p>
 <p>
+   <span class="text-highlight">https=./https.js lw s</span> to use <span class="text-highlight">https.js</span> to
+   configure https server.
+<div class="code-block">
+   <span class="label">https.js</span>
+   <pre><code class="javascript">
+   const fs = require("fs");
+
+   module.exports = {
+      cert: fs.readFileSync(__dirname + "/localhost.pem"),
+      key: fs.readFileSync(__dirname + "/localhost.key.pem"),
+      passphrase: "12345"
+   };
+      </code></pre>
+</div>
+</p>
+<p>
    <span class="text-highlight">noopen=1 lw s</span> to not open a browser.
 </p>
 
