@@ -1,4 +1,4 @@
-import LWElement from './../../../lib/lw-element.js';
+import LWElement from '../../../lib/lw-element.js';
 import ast from './ast.js';
 
 customElements.define('leanweb-app-sections-commands',
