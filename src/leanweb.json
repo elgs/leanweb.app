@@ -35,7 +35,8 @@
     "sections/code-16",
     "sections/code-16/parent",
     "sections/code-16/child",
-    "sections/code-00"
+    "sections/code-00",
+    "sections/apis"
   ],
   "resources": [
     "resources/"

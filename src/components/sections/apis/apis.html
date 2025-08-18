@@ -1,0 +1,154 @@
+<!-- <h2>How to update DOM of another component?</h2>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   document.querySelector('demo-root').shadowRoot.querySelector('demo-login').update();
+   
+   </code></pre>
+</div>
+<p>
+   This is to update the DOM of the <span class="text-highlight">demo-login</span> component enclosed by <span
+      class="text-highlight">demo-root</span> component.
+</p> -->
+
+<h2>globalThis.leanweb</h2>
+
+<p><span class="text-highlight">leanweb</span> is the only foot print on <span class="text-highlight">globalThis</span>
+  scope.</p>
+
+<h3>updateComponents(...tagNames)</h3>
+
+<p><span class="text-highlight">updateComponents</span> is used to update all component DOMs or DOMs of specific
+  component tag names. <span class="text-highlight">updateComponents</span> takes any number of component tag
+  names as arguments. If no argument is provided, it will update all component
+  DOMs app wide.</p>
+
+<h3>eventBus</h3>
+
+<p>An instance of <span class="text-highlight">LWEventBus</span> managed by <span class="text-highlight">leanweb</span>
+  to
+  pass DOM update events.</p>
+
+<h3>urlHash</h3>
+
+<p><span class="text-highlight">urlHash</span> is a reference to <span
+    class="text-highlight">window.location.hash</span>
+  which can be used for
+  routing.</p>
+
+<h3>urlHashPath</h3>
+
+<p><span class="text-highlight">urlHashPath</span> is used to set or get the <span class="text-highlight">path</span>
+  part
+  in the urlHash. If the
+  <span class="text-highlight">urlHash</span> is <span class="text-highlight">#/login?a=b&a=b&c=d</span>, <span
+    class="text-highlight">urlHashPath</span> will be <span class="text-highlight">#/login</span>.
+</p>
+
+<h3>urlHashParams</h3>
+
+<p><span class="text-highlight">urlHashParams</span> is used to set or get the <span
+    class="text-highlight">parameters</span> in the urlHash. If the
+  <span class="text-highlight">urlHash</span> is <span class="text-highlight">#/login?a=b&a=b&c=d</span>, <span
+    class="text-highlight">urlHashParams</span> will be
+  <span class="text-highlight">{a: ['b', 'b'], c: 'd'}</span>.
+</p>
+
+<h2>LWElement</h2>
+
+<p><span class="text-highlight">LWElement</span> extends <span class="text-highlight">HTMLElement</span>, and Leanweb
+  components extend <span class="text-highlight">LWElement</span>.
+  So Leanweb components are just more specific versions of the standard
+  <span class="text-highlight">HTMLElement</span>. <span class="text-highlight">LWElement</span> helps to wire up the
+  <span class="text-highlight">lw</span> directives in the HTML and
+  provides some convenient methods to update the DOM.
+</p>
+
+<h3>update(rootNode = this.shadowRoot)</h3>
+
+<p>The <span class="text-highlight">update</span> method provides a convenient way to update the DOM when the model
+  changes. You should feel free to use old way to update DOM. The <span class="text-highlight">update</span> just
+  makes life a little easier. <span class="text-highlight">update</span> takes <span
+    class="text-highlight">rootNode</span> as parameter, which
+  allows you to specify which DOM element to start with. The default value is
+  the current<span class="text-highlight">shadowRoot</span>.</p>
+
+<p>LWElement will call update in the following scenarios:</p>
+<ul>
+  <li>after all <span class="text-highlight">lw</span> directives are initially bound to DOM;</li>
+  <li>after <span class="text-highlight">lw-on:</span> event is fired;</li>
+  <li>after <span class="text-highlight">lw-model</span> change is fired;</li>
+</ul>
+
+<p>You may need to call the <span class="text-highlight">update()</span> method manually in other events. For
+  example:</p>
+<ul>
+  <li>in your setTimeout/setInterval callbacks;</li>
+  <li>in <span class="text-highlight">LWEventBus</span> callbacks;</li>
+  <li>in any network api callbacks;</li>
+</ul>
+
+<h3>domReady()</h3>
+
+<p><span class="text-highlight">domReady()</span> will be called after all initial DOM events are bound, and all
+  DOM interpolations are evaluated. This method is meant to be overridden and is a
+  great place to send events to the event bus.</p>
+
+<h3>inputReady()</h3>
+
+<p><span class="text-highlight">inputReady()</span> will be called after all input data from parent's <span
+    class="text-highlight">lw-input:</span>
+  are ready. In this method, children are able to access the passed in data
+  shared by parents.</p>
+
+<h3>turnedOn()</h3>
+
+<p>Called when the componnet <span class="text-highlight">lw-if</span> is evaluated <span
+    class="text-highlight">true</span>.</p>
+
+<h3>turnedOff()</h3>
+
+<p>Called when the componnet <span class="text-highlight">lw-if</span> is evaluated <span
+    class="text-highlight">false</span>.</p>
+
+<h3>urlHashChanged()</h3>
+
+<p>If <span class="text-highlight">urlHashChanged()</span> is defined as a function, it will be called whenever the
+  urlHash changes. This could be useful to update the DOM in component routing.</p>
+
+<h2>LWEventBus</h2>
+
+<p><span class="text-highlight">LWElement</span> comes with a global instance of <span
+    class="text-highlight">LWEventBus</span> that helps web
+  components to talk to each other by sending and receiving events and data. You
+  could use your own way for component communication. <span class="text-highlight">LWEventBus</span> is just a
+  choice for you.</p>
+
+<h3>addEventListener(eventName, callback)</h3>
+
+<p>You can use <span class="text-highlight">leanweb.eventBus</span> to get the global instance of event bus, and
+  use <span class="text-highlight">leanweb.eventBus.addEventListener(eventName, callback)</span> to subscribe to
+  a type of event from the event bus. <span class="text-highlight">addEventListener</span> takes two parameters.
+  The first <span class="text-highlight">eventName</span> is the name of the event, and the second <span
+    class="text-highlight">callback</span> is a
+  function that will get called when a event is sent to the event bus. The
+  callback function that takes a parameter <span class="text-highlight">event</span>, which contains <span
+    class="text-highlight">eventName</span>
+  and <span class="text-highlight">data</span> fields. <span class="text-highlight">addEventListener</span> returns the
+  eventListener instance
+  being added, which could be passed in <span class="text-highlight">removeEventListener</span> as parameter.</p>
+
+<h3>removeEventListener(listener)</h3>
+
+<p><span class="text-highlight">removeEventListener</span> removes the listener from the event bus, so it stops
+  being notified when a next event is fired.</p>
+
+<h3>dispatchEvent(eventName, data = null)</h3>
+
+<p><span class="text-highlight">dispatchEvent</span> is used to send an event to the event bus. It takes two
+  parameters. <span class="text-highlight">eventName</span> is the name of the event, and <span
+    class="text-highlight">data</span> is the payload data
+  of the event.</p>
+
+<br>
+<br>
