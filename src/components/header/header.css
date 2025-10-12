@@ -38,19 +38,11 @@ div.right {
   grid-column: 9;
   grid-row: 1;
 
-  svg.slack {
-    width: 32px;
-  }
-
-  svg.npm {
-    fill: lightgray;
-    width: 32px;
+  .npm {
     margin-left: 20px;
   }
 
-  svg.github {
-    fill: lightgray;
-    width: 32px;
+  .github {
     margin-left: 20px;
   }
 }
