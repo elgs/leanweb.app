@@ -1,0 +1,3 @@
+#!/bin/sh
+cp src/robots.txt dist/
+cp src/sitemap.xml dist/
