@@ -1,4 +1,4 @@
-<h2>Working with 2D array</h2>
+<h2>Working with 2D Arrays</h2>
 <p>Nest <span class="text-highlight">lw-for</span> loops to render multi-dimensional data. When binding inputs to primitive values inside a nested loop, use bracket notation like <span class="text-highlight">row[$i]</span> to maintain a pass-by-reference binding.</p>
 <div class="code-block">
    <span class="label">HTML</span>
@@ -6,7 +6,7 @@
    &lt;button lw-on:click='reset()'&gt;Reset&lt;/button&gt;
    &lt;div lw-for='row in array2d'&gt;
       &lt;span lw-for='cell, $i in row'&gt;
-         &lt;!-- cell is primitive type which is passed by value, --&gt;
+         &lt;!-- cell is a primitive type, which is passed by value, --&gt;
          &lt;!-- so lw-model uses row[$i] which is passed by reference --&gt;
          &lt;input type='number' lw-model='row[$i]'&gt;
          &lt;span lw&gt;cell&lt;/span&gt;
@@ -39,7 +39,7 @@
          <button lw-on:click="reset()">Reset</button>
          <div lw-for="row in array2d">
             <span lw-for="cell, $i in row">
-               <!-- cell is primitive type which is passed by value, -->
+               <!-- cell is a primitive type, which is passed by value, -->
                <!-- so lw-model uses row[$i] which is passed by reference -->
                <input type="number" lw-model="row[$i]">
                <span lw>cell</span>
