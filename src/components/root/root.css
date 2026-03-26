@@ -4,18 +4,49 @@
 .advanced-topics,
 .howtos,
 .apis {
-  padding-top: 50px;
-  align-items: center;
-  gap: 0 20px;
-
-  display: grid;
-  grid-template-columns: 1fr repeat(8, minmax(auto, 80px)) 1fr;
-
-  background-color: #fafafa;
+  padding: var(--lw-section-gap) 24px;
 
   div.center {
-    grid-column: 2/10;
-    grid-row: 1;
-    align-items: center;
+    max-width: var(--lw-content-max);
+    margin: 0 auto;
+
+    > h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ui-text);
+      margin: 0 0 4px 0;
+      letter-spacing: -0.02em;
+    }
+
+    > .subtitle {
+      font-size: 1.05rem;
+      color: var(--ui-text-muted);
+      margin: 0 0 32px 0;
+      line-height: 1.5;
+    }
   }
+}
+
+.commands {
+  background: var(--ui-bg);
+}
+
+.directives {
+  background: var(--ui-bg-subtle);
+}
+
+.form-bindings {
+  background: var(--ui-bg);
+}
+
+.advanced-topics {
+  background: var(--ui-bg-subtle);
+}
+
+.howtos {
+  background: var(--ui-bg);
+}
+
+.apis {
+  background: var(--ui-bg-subtle);
 }

@@ -1,14 +1,25 @@
 :host {
   display: block;
-  border-top: 1px solid tomato;
+  border-top: 1px solid var(--ui-border);
 }
 
 h2 {
-  font-weight: 500;
-  margin-top: 30px;
-  /* font-size: 28px; */
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--ui-text);
+  margin: 40px 0 12px 0;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--ui-text);
+  font-family: var(--ui-font-mono);
+  margin: 28px 0 8px 0;
 }
 
 li {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  color: var(--ui-text-muted);
+  line-height: 1.7;
 }

@@ -1,9 +1,16 @@
 :host {
   display: block;
-  border-top: 1px solid tomato;
+  border-top: 1px solid var(--ui-border);
 }
 
 h2 {
-  font-weight: 500;
-  /* font-size: 28px; */
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ui-text);
+  margin: 28px 0 8px 0;
+  font-family: var(--ui-font-mono);
+}
+
+p {
+  margin: 0 0 8px 0;
 }

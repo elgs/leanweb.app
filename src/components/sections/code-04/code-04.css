@@ -1,9 +1,10 @@
 :host {
   display: block;
-  padding: 20px 0;
-  border-top: 1px solid tomato;
+  padding: 40px 0;
+  border-top: 1px solid var(--ui-border);
 }
 
 .active {
-  color: red;
+  color: var(--ui-primary);
+  font-weight: 600;
 }

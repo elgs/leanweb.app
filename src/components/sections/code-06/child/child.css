@@ -1,10 +1,12 @@
 .child {
   width: 300px;
   height: 100px;
-  border: 1px solid gray;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
   margin: auto;
   display: grid;
   margin-top: 10px;
+  background: var(--ui-bg);
 
   span {
     margin: auto;

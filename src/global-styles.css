@@ -1,45 +1,112 @@
-@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/agate.min.css';
+@import './resources/ui.css';
+@import './resources/icons.css';
 
 .text-highlight {
-  padding: 0.2em 0.4em;
-  margin: 0;
-  font-size: 85%;
-  background-color: rgba(27, 31, 35, 0.05);
-  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+  font-family: var(--ui-font-mono);
+  background-color: var(--ui-primary-light);
+  color: var(--ui-primary);
+  border-radius: var(--ui-radius-sm);
 }
 
 p {
-  line-height: 1.5em;
+  line-height: 1.7;
+  color: var(--ui-text-muted);
 }
 
-.hljs {
+/* --- Code blocks --- */
+
+pre code {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1.25em;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: var(--ui-font-mono);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  border-radius: 0 0 var(--ui-radius-lg) var(--ui-radius-lg);
 }
+
+.sh-keyword  { color: #cba6f7; }
+.sh-string   { color: #a6e3a1; }
+.sh-number   { color: #fab387; }
+.sh-literal  { color: #fab387; }
+.sh-comment  { color: #6c7086; font-style: italic; }
+.sh-fn       { color: #89b4fa; }
+.sh-punct    { color: #9399b2; }
+.sh-tag      { color: #89b4fa; }
+.sh-attr     { color: #f9e2af; }
+.sh-bracket  { color: #cdd6f4; }
 
 .code-block {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border-radius: var(--ui-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ui-shadow);
+
   .label {
     position: absolute;
-    color: lightgray;
-    right: 4px;
-    top: 4px;
+    color: #6c7086;
+    right: 12px;
+    top: 8px;
     font-size: 11px;
+    font-family: var(--ui-font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 1;
   }
   pre {
     margin: 0;
   }
+
+  .copy-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--ui-radius);
+    color: #585b70;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--ui-transition), background var(--ui-transition), color var(--ui-transition);
+    z-index: 1;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #cdd6f4;
+    }
+
+    &.copied {
+      color: #a6e3a1;
+    }
+  }
+
+  &:hover .copy-btn {
+    opacity: 1;
+  }
 }
 
 .browser {
+  margin-top: 20px;
+
   leanweb-app-terminal .mainScreen {
-    background-color: white;
-    border: 1px solid #d5d5d5;
+    background-color: var(--ui-bg);
+    border: 1px solid var(--ui-border);
     box-sizing: border-box;
     width: 100%;
-    padding: 20px;
-    border-radius: 0 0 2px 2px;
+    padding: 24px;
+    border-radius: 0 0 var(--ui-radius-lg) var(--ui-radius-lg);
+    font-size: 0.95rem;
+    color: var(--ui-text);
   }
 }

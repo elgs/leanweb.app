@@ -1,9 +1,23 @@
-html,
-body {
+:root {
+  --ui-primary: #6366f1;
+  --ui-primary-hover: color-mix(in srgb, var(--ui-primary) 80%, #000);
+  --ui-primary-active: color-mix(in srgb, var(--ui-primary) 65%, #000);
+  --ui-primary-light: color-mix(in srgb, var(--ui-primary) 12%, #fff);
+  --ui-primary-text: #ffffff;
+  --lw-hero-bg: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  --lw-section-gap: 80px;
+  --lw-content-max: 960px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
-  margin: 0 auto;
-  padding: 0;
-
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: var(--ui-font);
+  font-size: 16px;
+  line-height: var(--ui-line-height);
+  color: var(--ui-text);
+  background: var(--ui-bg);
+  -webkit-font-smoothing: antialiased;
 }

@@ -1,17 +1,38 @@
-<div class="one">
-   <div class="left">
-      <leanweb-app-terminal>
-         <div class="mainScreen">
-            <p class="line" lw lw-for="line in terminalData">line</p>
-         </div>
-      </leanweb-app-terminal>
+<div class="hero">
+   <div class="badge">v<span lw>leanweb.runtimeVersion</span> &middot; 4kb gzipped</div>
+   <h1>Build web components<br>without the framework tax</h1>
+   <p class="tagline">Leanweb gives you reactive data binding, DOM-first templating, and zero build complexity. Just HTML, CSS, and JavaScript &mdash; the way the web was meant to be.</p>
+   <div class="install">
+      <code>npm i leanweb -g</code>
    </div>
-   <div class="middle">
-      <h1>Leanweb</h1>
-      <p>Builds framework agnostic web components</p>
-      <p>DOM first, no magic</p>
-      <p>Lean, 4kb runtime gzipped</p>
+   <div class="cta">
+      <a href="https://github.com/elgs/leanweb" class="ui-btn lg">
+         <i class="ui-icon ui-icon-github"></i> View on GitHub
+      </a>
    </div>
+</div>
+
+<div class="features">
+   <div class="feature">
+      <i class="ui-icon ui-icon-zap"></i>
+      <h3>Zero dependencies</h3>
+      <p>No virtual DOM, no compiler, no bundler. Ship native web components.</p>
+   </div>
+   <div class="feature">
+      <i class="ui-icon ui-icon-code"></i>
+      <h3>Reactive binding</h3>
+      <p>Two-way data binding, conditional rendering, and loops with simple directives.</p>
+   </div>
+   <div class="feature">
+      <i class="ui-icon ui-icon-package"></i>
+      <h3>Standards-based</h3>
+      <p>Built on Custom Elements and Shadow DOM. Works everywhere, with anything.</p>
+   </div>
+</div>
+
+<div class="demo-intro">
+   <h2>See it in action</h2>
+   <p>A few lines of HTML and JavaScript. That's all it takes.</p>
 </div>
 
 <div class="two">
@@ -19,7 +40,7 @@
       <div class="code-block html">
          <span class="label">HTML</span>
          <pre><code class="html">
-  
+
   Hello &lt;span lw&gt;world&lt;/span&gt;!
   &lt;span lw&gt;this instanceof HTMLElement&lt;/span&gt;
 
@@ -51,10 +72,10 @@
       <div class="code-block html">
          <span class="label">HTML</span>
          <pre><code class="html">
-  
-   Radius: 
+
+   Radius:
    &lt;input type='number' lw-model='r'&gt;
-   Area: 
+   Area:
    &lt;span lw&gt;Math.PI * r * r&lt;/span&gt;
 
          </code></pre>
@@ -66,7 +87,7 @@
       r = 1;
    }
 
-   
+
 
          </code></pre>
       </div>
