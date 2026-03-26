@@ -3,14 +3,33 @@
   border-top: 1px solid var(--ui-border);
 }
 
-h2 {
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--ui-text);
-  margin: 28px 0 8px 0;
+.cmd {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ui-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.prompt {
   font-family: var(--ui-font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  background: var(--ui-bg-subtle);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text);
+  border-radius: var(--ui-radius);
+  display: block;
+  margin-bottom: 10px;
+
+  .dollar {
+    color: var(--ui-primary);
+    margin-right: 8px;
+  }
 }
 
 p {
-  margin: 0 0 8px 0;
+  margin: 0;
 }
