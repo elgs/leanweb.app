@@ -1,5 +1,5 @@
-@import './resources/ui.css';
-@import './resources/icons.css';
+@import url('https://cdn.jsdelivr.net/gh/az-code-lab/ui@v0.0.3/src/ui.css');
+@import url('https://cdn.jsdelivr.net/gh/az-code-lab/ui@v0.0.3/src/icons.css');
 
 .text-highlight {
   padding: 0.15em 0.4em;

@@ -1,15 +1,20 @@
 <h2>How to update DOM of another component?</h2>
+<p>In light DOM mode (default), query the component directly:</p>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   document.querySelector('demo-login').update();
+
+   </code></pre>
+</div>
+<p>In Shadow DOM mode, traverse through the shadow root:</p>
 <div class="code-block">
    <span class="label">Javascript</span>
    <pre><code class="javascript">
    document.querySelector('demo-root').shadowRoot.querySelector('demo-login').update();
-   
+
    </code></pre>
 </div>
-<p>
-   This is to update the DOM of the <span class="text-highlight">demo-login</span> component enclosed by <span
-      class="text-highlight">demo-root</span> component.
-</p>
 
 <h2>How to update DOMs of all components?</h2>
 <div class="code-block">

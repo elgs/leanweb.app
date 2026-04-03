@@ -1,6 +1,6 @@
 {
   "name": "leanweb-app",
-  "version": "3.10.5",
+  "version": "4.0.0",
   "components": [
     "root",
     "terminal",
@@ -39,5 +39,6 @@
   ],
   "resources": [
     "resources/"
-  ]
+  ],
+  "shadowDom": true
 }
