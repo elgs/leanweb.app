@@ -8,5 +8,15 @@ customElements.define('leanweb-app-sections-code-02',
       }
 
       items = ['one', 'two', 'three'];
+
+      people = [
+         { id: 1, name: 'Alice' },
+         { id: 2, name: 'Bob' },
+         { id: 3, name: 'Carol' },
+      ];
+
+      reversePeople() {
+         this.people.reverse();
+      }
    }
 );

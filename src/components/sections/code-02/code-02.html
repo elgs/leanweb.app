@@ -27,3 +27,68 @@
 <p>You could access DOM nodes for each element in a <span class="text-highlight">lw-for</span> loop by calling <span
       class="text-highlight">elem.getDom()</span> as long as <span class="text-highlight">typeof elem</span>
    evaluates to <span class="text-highlight">object</span>.</p>
+
+<h3>Keyed rows: lw-key</h3>
+<p>
+   Without a key, rows are reused <span class="text-highlight">by position</span>:
+   when the array is reordered, each DOM node stays where it is and receives
+   whichever item now sits at its index. Anything living on the node itself
+   &mdash; focus, a CSS transition, text typed into an input &mdash; stays behind.
+   Add <span class="text-highlight">lw-key</span> to match rows to items by
+   identity instead: the node then moves <em>with</em> its item. The key
+   expression sees the loop variable and must yield defined, unique values.
+</p>
+<div class="code-block">
+   <span class="label">HTML</span>
+   <pre><code class="html">
+   &lt;!-- rows reused by position --&gt;
+   &lt;div lw-for='p in people'&gt;...&lt;/div&gt;
+
+   &lt;!-- rows follow their item --&gt;
+   &lt;div lw-for='p in people' lw-key='p.id'&gt;...&lt;/div&gt;
+
+</code></pre>
+</div>
+<div class="code-block">
+   <span class="label">Javascript</span>
+   <pre><code class="javascript">
+   class extends LWElement {
+      people = [
+         { id: 1, name: 'Alice' },
+         { id: 2, name: 'Bob' },
+         { id: 3, name: 'Carol' },
+      ];
+
+      reversePeople() {
+         this.people.reverse();
+      }
+   }
+
+</code></pre>
+</div>
+<p>
+   Try it: type into a box next to a name, then reverse the list. On the left
+   (no key) the text stays at its position and ends up next to the wrong
+   name; on the right (keyed) it travels with its person.
+</p>
+<div class="browser">
+   <leanweb-app-terminal>
+      <div class="mainScreen keyed-demo">
+         <button lw-on:click="reversePeople()">Reverse List</button>
+         <div class="cols">
+            <div class="col">
+               <h4>without lw-key</h4>
+               <div class="person" lw-for="p in people">
+                  <span lw>p.name</span><input placeholder="type here">
+               </div>
+            </div>
+            <div class="col">
+               <h4>with lw-key</h4>
+               <div class="person" lw-for="p in people" lw-key="p.id">
+                  <span lw>p.name</span><input placeholder="type here">
+               </div>
+            </div>
+         </div>
+      </div>
+   </leanweb-app-terminal>
+</div>

@@ -13,7 +13,23 @@
    <li>
       any local <span class="text-highlight">lw-model:</span> is changed;
    </li>
+   <li>
+      any local <span class="text-highlight">async</span> method settles;
+   </li>
+   <li>
+      its parent component updates (updates propagate to child components);
+   </li>
 </ol>
+<p>
+   A useful way to remember the model:
+   <span class="text-highlight">data flows down</span> through renders,
+   <span class="text-highlight">signals go up</span> through DOM events, and
+   going <span class="text-highlight">across is up-then-down</span> &mdash; a
+   bubbling event to the common ancestor, whose update propagates back down.
+   The event bus below is for everything that has no DOM position: timers,
+   socket callbacks, module code, and deliberately decoupled updates like
+   this example.
+</p>
 <p>
    You might need to update local or other components DOM when:
 </p>
@@ -52,11 +68,10 @@
 <div class="code-block">
    <span class="label">root.html</span>
    <pre><code class="html">
-   &lt;div class='buttons'&gt;
-      &lt;button lw-on:click='updateAll()'&gt;Update All&lt;/button&gt;
-      &lt;button lw-on:click='updateRed()'&gt;Update Red&lt;/button&gt;
-      &lt;button lw-on:click='updateBlue()'&gt;Update Blue&lt;/button&gt;
-   &lt;/div&gt;
+   &lt;!-- The buttons live in their own component: a click updates only
+        that component, and updates propagate to children — so the cards,
+        being siblings, are reached ONLY through the event bus. --&gt;
+   &lt;demo-buttons&gt;&lt;/demo-buttons&gt;
 
    &lt;div class='red'&gt;
       &lt;demo-dest-red&gt;&lt;/demo-dest-red&gt;
@@ -71,7 +86,7 @@
 </div>
 
 <div class="code-block">
-   <span class="label">root.js</span>
+   <span class="label">buttons.js</span>
    <pre><code class="javascript">
    class extends LWElement {
       updateAll() {
@@ -147,11 +162,7 @@
 <div class="browser">
    <leanweb-app-terminal>
       <div class="mainScreen">
-         <div class="buttons">
-            <button lw-on:click="updateAll()">Update All</button>
-            <button lw-on:click="updateRed()">Update Red</button>
-            <button lw-on:click="updateBlue()">Update Blue</button>
-         </div>
+         <leanweb-app-sections-code-14-buttons class="buttons"></leanweb-app-sections-code-14-buttons>
          <div class="red">
             <leanweb-app-sections-code-14-dest-red></leanweb-app-sections-code-14-dest-red>
             <leanweb-app-sections-code-14-dest-red></leanweb-app-sections-code-14-dest-red>

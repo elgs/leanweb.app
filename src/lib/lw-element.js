@@ -6,6 +6,7 @@ globalThis.leanweb ??= {};
 leanweb.componentsListeningOnUrlChanges = [];
 leanweb.eventBus = new LWEventBus();
 leanweb.updateComponents = function (...tagNames) {
+  if (leanweb.debug) console.debug('[leanweb] updateComponents', tagNames?.length ? tagNames : '(all)');
   if (tagNames?.length) {
     tagNames.forEach(tagName => {
       leanweb.eventBus.dispatchEvent(tagName);
@@ -79,6 +80,10 @@ globalThis.addEventListener('hashchange', () => {
   });
 }, false);
 
+// True while _removeIfNode swaps an lw-if subtree for its placeholder, so
+// disconnectedCallback can tell parking apart from a real removal.
+let parkingInProgress = false;
+
 const hasMethod = (obj, name) => {
   const desc = Object.getOwnPropertyDescriptor(obj, name);
   return !!desc && typeof desc.value === 'function';
@@ -149,6 +154,7 @@ export default class LWElement extends HTMLElement {
     });
 
     this._ifPlaceholders = new Set();
+    this._forTemplates = new Set();
     this._eventBusListeners = [];
     this._registerListeners();
   }
@@ -172,6 +178,18 @@ export default class LWElement extends HTMLElement {
   }
 
   disconnectedCallback() {
+    // Parking (lw-if turning false) is a pause, not a removal: the element
+    // comes back via its placeholder with everything intact, so keep the
+    // bus and url subscriptions. Real removals still tear down; components
+    // parked inside a subtree that later leaves for good are swept by
+    // _teardownParked.
+    if (parkingInProgress) {
+      return;
+    }
+    this._teardown();
+  }
+
+  _teardown() {
     const idx = leanweb.componentsListeningOnUrlChanges.indexOf(this);
     if (idx > -1) {
       leanweb.componentsListeningOnUrlChanges.splice(idx, 1);
@@ -195,6 +213,8 @@ export default class LWElement extends HTMLElement {
   }
 
   update(rootNode = this._root) {
+    // Failed expressions report which component they belong to.
+    parser.setErrorLabel(this.ast.componentFullName);
     // Restore any lw-if placeholders whose condition is now true before
     // walking the tree, so the restored elements get processed normally.
     this._restoreIfPlaceholders();
@@ -207,6 +227,9 @@ export default class LWElement extends HTMLElement {
     // after the TreeWalker finishes so we don't detach the walker's current
     // navigation pointer (which would stop the walk).
     const toRemove = [];
+    // lw-for templates rendered this pass; extracted from the DOM after the
+    // walk (see _extractForTemplates) for the same navigation-safety reason.
+    const toExtract = [];
 
     if (rootNode !== this._root) {
       if (rootNode.hasAttribute('lw-elem')) {
@@ -228,14 +251,20 @@ export default class LWElement extends HTMLElement {
           this.updateModel(rootNode);
           if (rootNode.hasAttribute('lw-for')) {
             this.updateFor(rootNode);
+            // A template is inert — never walk into it; move it out of the
+            // DOM and let its placeholder drive future renders.
+            this._extractForTemplates([rootNode]);
+            return;
           }
         }
       }
     }
     // If rootNode is a child component (called from updateFor on a component
     // element), don't walk its descendants — they belong to the child's own
-    // AST and will be updated by the child's own update() cycle.
+    // AST. Its bound attributes were refreshed above, so hand it the update:
+    // parent renders, child renders.
     if (rootNode !== this._root && rootNode.localName.startsWith(leanweb.componentPrefix)) {
+      if (typeof rootNode.update === 'function' && !rootNode.hasAttribute('lw-isolate')) rootNode.update();
       return;
     }
     // Walk all descendant elements and process lw-* directives.
@@ -244,9 +273,11 @@ export default class LWElement extends HTMLElement {
     // by tag name (see FILTER_REJECT below) to mimic that boundary.
     const treeWalker = document.createTreeWalker(rootNode, NodeFilter.SHOW_ELEMENT, {
       acceptNode: node => {
+        parser.setErrorLabel(this.ast.componentFullName);
         if (node.hasAttribute('lw-elem')) {
           if (node.hasAttribute('lw-for')) {
             this.updateFor(node);
+            toExtract.push(node);
             return NodeFilter.FILTER_REJECT;
           }
           if (node.hasAttribute('lw-for-parent')) {
@@ -266,24 +297,74 @@ export default class LWElement extends HTMLElement {
           this.updateBind(node);
           this.updateModel(node);
         }
-        // Light DOM boundary: in non-shadow DOM mode, the child component's
-        // internal DOM is in the light DOM, so FILTER_REJECT prevents walking
-        // into it. In shadow DOM mode, the shadow boundary already isolates
-        // child internals, and we must not reject here so the TreeWalker can
-        // still visit slotted content (light DOM children owned by this parent).
-        if (!this.ast.shadowDom && node !== rootNode && node.localName.startsWith(leanweb.componentPrefix)) {
-          return NodeFilter.FILTER_REJECT;
+        // Child component boundary. Its bound attributes were refreshed
+        // above; hand it the update so parent state flows into children
+        // without manual updateComponents() plumbing (parent renders, child
+        // renders — children updated by their own cycle from here).
+        if (node !== rootNode && node.localName.startsWith(leanweb.componentPrefix)) {
+          // lw-isolate opts a child out: it renders only on its own
+          // triggers (events, async settles, bus pokes) — for components
+          // that own their cadence, like clocks or heavy visualizations.
+          if (typeof node.update === 'function' && !node.hasAttribute('lw-isolate')) node.update();
+          // Light DOM: the child's internal DOM is in the light DOM, so
+          // FILTER_REJECT prevents walking into it. With shadow DOM the
+          // boundary already isolates child internals, and we must not
+          // reject so the TreeWalker still visits slotted content (light
+          // DOM children owned by this parent).
+          if (!this.ast.shadowDom) {
+            return NodeFilter.FILTER_REJECT;
+          }
         }
         return NodeFilter.FILTER_ACCEPT;
       }
     });
     while (treeWalker.nextNode()) { }
     this._applyIfRemovals(toRemove);
+    this._extractForTemplates(toExtract);
+    this._updateForPlaceholders(rootNode);
   }
 
   _applyIfRemovals(toRemove) {
     for (const node of toRemove) {
       this._removeIfNode(node);
+    }
+  }
+
+  // After its first render, an lw-for template leaves the DOM for good: a
+  // comment placeholder anchors the rows and carries the detached template
+  // for cloning. Templates therefore never pollute selectors, row counts,
+  // CSS or the accessibility tree — and component instances that only ever
+  // existed inside the template (never real rows) release their
+  // subscriptions on the way out.
+  _extractForTemplates(templates) {
+    this._forTemplates ??= new Set();
+    for (const template of templates) {
+      if (!template.parentNode) {
+        continue;
+      }
+      const placeholder = document.createComment('lw-for');
+      placeholder['lw-for-template'] = template;
+      template.replaceWith(placeholder);
+      this._forTemplates.add(placeholder);
+    }
+  }
+
+  // Re-renders every extracted lw-for whose placeholder sits under rootNode.
+  // An entry whose placeholder left the component for good goes away with
+  // its rows; entries inside a parked ancestor are dormant on that
+  // ancestor's placeholder (see _removeIfNode), not in this registry.
+  _updateForPlaceholders(rootNode = this._root) {
+    if (!this._forTemplates) {
+      return;
+    }
+    for (const placeholder of this._forTemplates) {
+      if (!this._root.contains(placeholder)) {
+        this._forTemplates.delete(placeholder);
+        continue;
+      }
+      if (rootNode === this._root || rootNode.contains(placeholder)) {
+        this.updateFor(placeholder);
+      }
     }
   }
 
@@ -515,7 +596,25 @@ export default class LWElement extends HTMLElement {
       }
     }
     placeholder['lw-dormant-placeholders'] = dormant;
-    ifNode.parentNode.replaceChild(placeholder, ifNode);
+    // Same treatment for extracted lw-for anchors inside the subtree: they
+    // leave the per-update sweep and come back with the ancestor.
+    const dormantFors = new Set();
+    if (this._forTemplates) {
+      for (const p of this._forTemplates) {
+        if (ifNode.contains(p)) {
+          dormantFors.add(p);
+          this._forTemplates.delete(p);
+        }
+      }
+    }
+    placeholder['lw-dormant-for-templates'] = dormantFors;
+    if (leanweb.debug) console.debug('[leanweb] park', this.ast.componentFullName, '<' + ifNode.localName + '>');
+    parkingInProgress = true;
+    try {
+      ifNode.parentNode.replaceChild(placeholder, ifNode);
+    } finally {
+      parkingInProgress = false;
+    }
     this._ifPlaceholders.add(placeholder);
     setTimeout(() => {
       ifNode.turnedOff?.call(ifNode);
@@ -526,14 +625,35 @@ export default class LWElement extends HTMLElement {
   // entries that were parked inside its subtree.
   _restoreIfNode(placeholder) {
     const ifNode = placeholder['lw-if-element'];
+    if (leanweb.debug) console.debug('[leanweb] restore', this.ast.componentFullName, '<' + ifNode.localName + '>');
     placeholder.parentNode.replaceChild(ifNode, placeholder);
     this._ifPlaceholders.delete(placeholder);
     // A for..of over a Set visits entries added during iteration, so a sweep
     // in progress re-evaluates the woken entries in this same pass.
     placeholder['lw-dormant-placeholders']?.forEach(p => this._ifPlaceholders.add(p));
+    placeholder['lw-dormant-for-templates']?.forEach(p => {
+      this._forTemplates ??= new Set();
+      this._forTemplates.add(p);
+    });
     setTimeout(() => {
       ifNode.turnedOn?.call(ifNode);
     });
+  }
+
+  // Releases the subscriptions of every component inside a parked subtree
+  // that is leaving for good (its placeholder's position was destroyed).
+  // Recurses through dormant placeholders so nested parked subtrees are
+  // swept too.
+  _teardownParked(placeholder) {
+    const rootEl = placeholder?.['lw-if-element'];
+    if (rootEl) {
+      for (const el of [rootEl, ...rootEl.querySelectorAll('*')]) {
+        if (el.localName?.startsWith(leanweb.componentPrefix) && typeof el._teardown === 'function') {
+          el._teardown();
+        }
+      }
+    }
+    placeholder?.['lw-dormant-placeholders']?.forEach(p => this._teardownParked(p));
   }
 
   // Restores lw-if placeholders whose condition has become true.
@@ -544,6 +664,9 @@ export default class LWElement extends HTMLElement {
         // removed lw-for row). Placeholders inside a parked lw-if subtree are
         // not in this registry — they live on the ancestor's placeholder and
         // return with it (see _removeIfNode) — so nothing reachable is lost.
+        // Parked components kept their subscriptions (see
+        // disconnectedCallback); now that they can never return, release them.
+        this._teardownParked(placeholder);
         this._ifPlaceholders.delete(placeholder);
         continue;
       }
@@ -637,32 +760,77 @@ export default class LWElement extends HTMLElement {
   // child propery:
   // lw-context: localContext
   updateFor(forNode) {
-    const key = forNode.getAttribute('lw-for');
+    // forNode is the lw-for element on its FIRST render; afterwards the
+    // template lives detached on a comment placeholder and forNode is that
+    // comment (_extractForTemplates). Either way it anchors the rows.
+    const isPlaceholder = forNode.nodeType === Node.COMMENT_NODE;
+    const template = isPlaceholder ? forNode['lw-for-template'] : forNode;
+    const key = template.getAttribute('lw-for');
     if (!key) {
       return;
     }
-    const context = this._getNodeContext(forNode);
+    const context = this._getNodeContext(isPlaceholder ? forNode.parentElement : template);
     const interpolation = this.ast[key];
     const items = parser.evaluate(interpolation.astItems, context, interpolation.loc)[0] ?? [];
     const rendered = nextAllRowSlots(forNode, key);
-    for (let i = items.length; i < rendered.length; ++i) {
-      // A parked surplus row's registry entry goes with its placeholder.
-      this._ifPlaceholders.delete(rendered[i]);
-      rendered[i].remove();
+
+    // With lw-key="expr" on the lw-for element, rows are matched to items by
+    // key instead of by position: node identity follows the DATA through
+    // reorders, insertions and removals, so node-bound state (focus, hover,
+    // CSS transitions, half-typed inputs) travels with its item. The key
+    // expression sees the loop variable (and index, and component state) and
+    // must yield defined, unique values. Without lw-key, behavior is exactly
+    // the positional reuse it has always been.
+    const keyAstKey = template.getAttribute('lw-key');
+    const slotElement = slot => slot.nodeType === Node.COMMENT_NODE ? slot['lw-if-element'] : slot;
+    let byKey = null;
+    if (keyAstKey) {
+      byKey = new Map();
+      for (const slot of rendered) {
+        const k = slotElement(slot)?.['lw-key-value'];
+        // Duplicate or undefined keys: first slot wins, extras fall through
+        // to surplus removal below.
+        if (k !== undefined && !byKey.has(k)) {
+          byKey.set(k, slot);
+        }
+      }
     }
 
     let currentNode = forNode;
     items.forEach((item, index) => {
+      const itemContext = { [interpolation.itemExpr]: item };
+      if (interpolation.indexExpr) {
+        itemContext[interpolation.indexExpr] = index;
+      }
+
+      let slot;
+      let itemKey;
+      if (byKey) {
+        const keyInterpolation = this.ast[keyAstKey];
+        itemKey = parser.evaluate(keyInterpolation.ast, [itemContext, ...context], keyInterpolation.loc)[0];
+        slot = byKey.get(itemKey);
+        byKey.delete(itemKey);
+      } else if (rendered.length > index) {
+        slot = rendered[index];
+      }
+
       let node;
       let placeholder = null;
-      if (rendered.length > index) {
-        node = rendered[index];
+      if (slot !== undefined) {
+        node = slot;
         if (node.nodeType === Node.COMMENT_NODE) {
           placeholder = node;
           node = placeholder['lw-if-element'];
         }
+        // Keyed rows can arrive out of order; move the slot into position.
+        if (byKey) {
+          const domSlot = placeholder ?? node;
+          if (currentNode.nextSibling !== domSlot) {
+            currentNode.after(domSlot);
+          }
+        }
       } else {
-        node = forNode.cloneNode(true);
+        node = template.cloneNode(true);
         node.removeAttribute('lw-for');
         // node.removeAttribute('lw-elem');
         node.setAttribute('lw-for-parent', key);
@@ -670,11 +838,10 @@ export default class LWElement extends HTMLElement {
         // after() also works when the anchor is a parked row's comment.
         currentNode.after(node);
       }
-      currentNode = placeholder ?? node;
-      const itemContext = { [interpolation.itemExpr]: item };
-      if (interpolation.indexExpr) {
-        itemContext[interpolation.indexExpr] = index;
+      if (byKey) {
+        node['lw-key-value'] = itemKey;
       }
+      currentNode = placeholder ?? node;
 
       node['lw-context'] = [itemContext, ...context];
       if (placeholder) {
@@ -697,5 +864,17 @@ export default class LWElement extends HTMLElement {
         }
       }
     });
+
+    // Surplus rows: whatever no item claimed this pass. A parked surplus
+    // row's registry entry goes with its placeholder, and any components
+    // parked inside it release their subscriptions.
+    const surplus = byKey ? [...byKey.values()] : rendered.slice(items.length);
+    for (const slot of surplus) {
+      if (slot.nodeType === Node.COMMENT_NODE) {
+        this._teardownParked(slot);
+        this._ifPlaceholders.delete(slot);
+      }
+      slot.remove();
+    }
   }
 }
