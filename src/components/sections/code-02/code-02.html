@@ -38,14 +38,29 @@
    identity instead: the node then moves <em>with</em> its item. The key
    expression sees the loop variable and must yield defined, unique values.
 </p>
+<p>
+   For arrays holding stable objects, the item itself is a fine key:
+   <span class="text-highlight">lw-key='p'</span>. When items are recreated
+   on every render &mdash; rows re-fetched from a server &mdash; key by a
+   stable field like <span class="text-highlight">lw-key='p.id'</span>
+   instead, since object identity never matches across fetches.
+</p>
 <div class="code-block">
    <span class="label">HTML</span>
    <pre><code class="html">
-   &lt;!-- rows reused by position --&gt;
-   &lt;div lw-for='p in people'&gt;...&lt;/div&gt;
+   &lt;!-- rows reused by position: reordering rewrites
+        each row's contents in place --&gt;
+   &lt;div class='person' lw-for='p in people'&gt;
+      &lt;span lw&gt;p.name&lt;/span&gt;
+      &lt;input placeholder='type here'&gt;
+   &lt;/div&gt;
 
-   &lt;!-- rows follow their item --&gt;
-   &lt;div lw-for='p in people' lw-key='p.id'&gt;...&lt;/div&gt;
+   &lt;!-- rows follow their item: reordering moves the
+        row nodes, contents untouched --&gt;
+   &lt;div class='person' lw-for='p in people' lw-key='p.id'&gt;
+      &lt;span lw&gt;p.name&lt;/span&gt;
+      &lt;input placeholder='type here'&gt;
+   &lt;/div&gt;
 
 </code></pre>
 </div>
