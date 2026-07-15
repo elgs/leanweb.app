@@ -36,8 +36,10 @@
 
       <div class="showcase">
          <div class="code-block" data-file="app.html"><pre><code>
-            &lt;label&gt;Radius &lt;input type='number' lw-model='r'&gt;&lt;/label&gt;
-            &lt;p&gt;Area is &lt;b lw&gt;(Math.PI * r * r).toFixed(2)&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;Radius &lt;input type='number' lw-model='r'&gt;&lt;/p&gt;
+            &lt;p&gt;
+               Area is &lt;b lw&gt;(Math.PI * r * r).toFixed(2)&lt;/b&gt;
+            &lt;/p&gt;
          </code></pre></div>
          <div class="code-block" data-file="app.js"><pre><code>
             customElements.define('demo-app',
@@ -46,9 +48,11 @@
                }
             );
          </code></pre></div>
-         <leanweb-app-window label="localhost:2020">
-            <label>Radius <input type="number" lw-model="r"></label>
-            <p>Area is <b lw>(Math.PI * r * r).toFixed(2)</b></p>
+         <leanweb-app-window>
+            <p>Radius <input type="number" lw-model="r"></p>
+            <p>
+               Area is <b lw>(Math.PI * r * r).toFixed(2)</b>
+            </p>
          </leanweb-app-window>
       </div>
    </div>

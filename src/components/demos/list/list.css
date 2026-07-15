@@ -11,7 +11,7 @@ ul {
   gap: 16px;
 
   .col-label {
-    font: 500 .72rem/1 var(--font-mono);
+    font: 500 .74rem/1 var(--font-mono);
     letter-spacing: .05em;
     color: var(--ink-3);
     margin-bottom: 10px;

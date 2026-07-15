@@ -7,7 +7,7 @@ leanweb-app-window {
 }
 
 .term {
-  font: .85rem/2 var(--font-mono);
+  font: .88rem/2 var(--font-mono);
   color: var(--ink);
 
   .cmt { color: var(--ink-3); }
@@ -15,7 +15,7 @@ leanweb-app-window {
 
 .cmds .card {
   .cmd {
-    font: 600 .9rem/1 var(--font-mono);
+    font: 600 .92rem/1 var(--font-mono);
     color: var(--accent-ink);
     margin-bottom: 10px;
 
@@ -26,5 +26,5 @@ leanweb-app-window {
     }
   }
 
-  p { font-size: .92rem; }
+  p { font-size: .95rem; }
 }

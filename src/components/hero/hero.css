@@ -6,8 +6,8 @@ background:
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  gap: clamp(28px, 5vw, 64px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
   align-items: center;
 }
 
@@ -51,7 +51,7 @@ background:
       align-items: center;
       gap: 10px;
       font-family: var(--font-mono);
-      font-size: .92rem;
+      font-size: .95rem;
       color: var(--ink);
       background: var(--panel);
       border: 1px solid var(--line-strong);
@@ -131,7 +131,7 @@ background:
       margin-bottom: 8px;
     }
 
-    p { font-size: .93rem; }
+    p { font-size: .95rem; }
   }
 }
 

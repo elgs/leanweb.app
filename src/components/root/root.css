@@ -55,7 +55,7 @@ display: block;
     &::-webkit-scrollbar { display: none; }
 
     a {
-      font-size: .87rem;
+      font-size: .9rem;
       font-weight: 500;
       color: var(--ink-2);
       padding: 6px 11px;

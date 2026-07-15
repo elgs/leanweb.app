@@ -1,7 +1,7 @@
 display: block;
 
 .state {
-  font: 500 .78rem/1.5 var(--font-mono);
+  font: 500 .8rem/1.5 var(--font-mono);
   color: var(--ink-3);
 }
 
