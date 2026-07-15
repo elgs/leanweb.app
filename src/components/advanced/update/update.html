@@ -1,0 +1,58 @@
+<div class="demo" id="updates">
+   <div class="demo-head">
+      <h3>Who renders when: <code>updateComponents</code><a class="anchor" href="#updates">#</a></h3>
+      <p>A component re-renders when it initializes, a local <code>lw-on:</code> event fires, a local
+         <code>lw-model</code> changes, a local <code>async</code> method settles, or its parent re-renders —
+         updates propagate down. In short: data flows down, signals go up, and across is up-then-down. For
+         everything with no DOM position — timers, sockets, module code — you say when:
+         <code>this.update()</code> for one component, <code>leanweb.updateComponents(...tagNames)</code> for
+         others, no arguments for the whole app.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;demo-controls&gt;&lt;/demo-controls&gt;
+            &lt;demo-red&gt;&lt;/demo-red&gt;
+            &lt;demo-red&gt;&lt;/demo-red&gt;
+            &lt;demo-blue&gt;&lt;/demo-blue&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="controls.js"><pre><code>
+            customElements.define('demo-controls',
+               class extends LWElement {
+                  all() { leanweb.updateComponents(); }
+                  red() { leanweb.updateComponents('demo-red'); }
+                  blue() { leanweb.updateComponents('demo-blue'); }
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="red.js"><pre><code>
+            customElements.define('demo-red',
+               class extends LWElement {
+                  constructor() {
+                     super(ast);
+                     setInterval(() => {
+                        this.time = new Date().toLocaleTimeString();
+                     }, 1000);
+                  }
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="red.html"><pre><code>
+            &lt;p&gt;red &lt;b lw&gt;time ?? '-'&lt;/b&gt;&lt;/p&gt;
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <leanweb-app-advanced-update-controls></leanweb-app-advanced-update-controls>
+         <div class="fleet">
+            <leanweb-app-advanced-update-red></leanweb-app-advanced-update-red>
+            <leanweb-app-advanced-update-red></leanweb-app-advanced-update-red>
+            <leanweb-app-advanced-update-blue></leanweb-app-advanced-update-blue>
+            <leanweb-app-advanced-update-blue></leanweb-app-advanced-update-blue>
+         </div>
+      </leanweb-app-window>
+   </div>
+   <p class="note">These clocks tick every second but never call <code>update()</code> — their DOM refreshes
+      only when asked. The buttons live in their own component on purpose: a click re-renders that component
+      alone, and the clocks are its siblings, not its children — so they refresh only through
+      <code>updateComponents</code>. <code>demo-blue</code> is <code>demo-red</code> with a different tag.</p>
+</div>

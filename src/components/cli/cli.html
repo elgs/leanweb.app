@@ -1,0 +1,42 @@
+<leanweb-app-window label="terminal">
+   <div class="term">
+      <div class="line"><span class="ps1">$</span> npm i -g leanweb</div>
+      <div class="line"><span class="ps1">$</span> mkdir hello && cd hello</div>
+      <div class="line"><span class="ps1">$</span> lw init <span class="cmt"># scaffold a project</span></div>
+      <div class="line"><span class="ps1">$</span> lw serve <span class="cmt"># dev server, watch &amp; rebuild</span></div>
+   </div>
+</leanweb-app-window>
+
+<div class="card-grid cmds">
+   <div class="card">
+      <div class="cmd">lw init</div>
+      <p>Scaffold a ready-to-run project in an empty directory. Light DOM with scoped CSS by default; add
+         <code>--shadow-dom</code> for full encapsulation.</p>
+   </div>
+   <div class="card">
+      <div class="cmd">lw generate login</div>
+      <p>Create a component — <code>login.html</code>, <code>login.css</code>, <code>login.js</code> — and
+         register it in <code>leanweb.json</code>. Nested names like <code>admin/users</code> work too.</p>
+   </div>
+   <div class="card">
+      <div class="cmd">lw serve</div>
+      <p>Start the dev server and rebuild on every change. <code>lw serve prod</code> runs against the
+         <code>prod</code> environment.</p>
+   </div>
+   <div class="card">
+      <div class="cmd">lw dist</div>
+      <p>Production build: bundled, minified, source-mapped, written to <code>dist/</code>. Runs your
+         <code>post-dist</code> script when one exists.</p>
+   </div>
+   <div class="card">
+      <div class="cmd">lw upgrade</div>
+      <p>Refresh the project runtime after updating the tools. <code>lw upgrade --diff</code> previews every
+         file it would change without writing anything.</p>
+   </div>
+   <div class="card">
+      <div class="cmd">lw help</div>
+      <p>Everything else: <code>build</code>, <code>clean</code>, <code>addpage</code>, <code>destroy</code>,
+         <code>version</code>. Commands match by prefix — <code>lw s</code>, <code>lw di</code>,
+         <code>lw g</code> all work.</p>
+   </div>
+</div>

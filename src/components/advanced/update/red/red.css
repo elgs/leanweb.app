@@ -1,0 +1,12 @@
+display: block;
+border: 1px solid light-dark(rgb(225 29 72 / .35), rgb(251 113 133 / .4));
+background: light-dark(rgb(225 29 72 / .06), rgb(251 113 133 / .08));
+border-radius: var(--radius);
+padding: 12px 14px;
+
+p {
+  margin: 0;
+  color: light-dark(#be123c, #fda4af);
+
+  b { font-family: var(--font-mono); font-weight: 600; }
+}

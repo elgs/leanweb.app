@@ -1,0 +1,25 @@
+display: block;
+border: 1px solid var(--line-strong);
+border-radius: var(--radius);
+overflow: hidden;
+background: var(--bg);
+
+.chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 600;
+  font-size: .9rem;
+  background: var(--bg-soft);
+  padding: 8px 8px 8px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content {
+  padding: 14px;
+
+  lw-slot > * + * { margin-top: 10px; }
+
+  p { margin: 0; }
+}

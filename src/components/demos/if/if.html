@@ -1,0 +1,28 @@
+<div class="demo" id="lw-if">
+   <div class="demo-head">
+      <h3><code>lw-if</code><a class="anchor" href="#lw-if">#</a></h3>
+      <p>Render an element only while an expression is truthy. When it turns false the element is parked —
+         not destroyed — and returns to its exact spot, state intact, when the expression turns true again.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;button lw-on:click='on = !on'&gt;Toggle&lt;/button&gt;
+            &lt;div lw-if='on'&gt;
+               🎈 Parked, not destroyed — &lt;input placeholder='type, then toggle twice'&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               on = true;
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <button lw-on:click="on = !on">Toggle</button>
+         <div lw-if="on">
+            🎈 Parked, not destroyed — <input placeholder="type, then toggle twice">
+         </div>
+      </leanweb-app-window>
+   </div>
+</div>

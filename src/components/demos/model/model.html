@@ -1,0 +1,26 @@
+<div class="demo" id="lw-model">
+   <div class="demo-head">
+      <h3><code>lw-model</code><a class="anchor" href="#lw-model">#</a></h3>
+      <p>Two-way binding: typing updates the property, and setting the property updates the control. It works
+         on every form element — the Forms section below covers each kind.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;input lw-model='city' placeholder='type a city'&gt;
+            &lt;button lw-on:click="city = 'Phoenix'"&gt;Set Phoenix&lt;/button&gt;
+            &lt;p&gt;Shipping to &lt;b lw&gt;city&lt;/b&gt;&lt;/p&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               city = '';
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <input lw-model="city" placeholder="type a city">
+         <button lw-on:click="city = 'Phoenix'">Set Phoenix</button>
+         <p>Shipping to <b lw>city</b></p>
+      </leanweb-app-window>
+   </div>
+</div>

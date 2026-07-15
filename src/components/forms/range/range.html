@@ -1,0 +1,27 @@
+<div class="demo" id="ranges">
+   <div class="demo-head">
+      <h3>Ranges<a class="anchor" href="#ranges">#</a></h3>
+      <p>Sliders bind as numbers — drag it or set it, the property stays a number either way.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;input type='range' max='11' lw-model='volume'&gt;
+            &lt;b lw&gt;volume&lt;/b&gt;
+            &lt;button lw-on:click='volume = 11'&gt;These go to eleven&lt;/button&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               volume = 7;
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <div class="dial">
+            <input type="range" max="11" lw-model="volume">
+            <b lw>volume</b>
+         </div>
+         <button lw-on:click="volume = 11">These go to eleven</button>
+      </leanweb-app-window>
+   </div>
+</div>

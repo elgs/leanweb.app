@@ -1,0 +1,82 @@
+<div class="api-group card">
+   <div class="api-head">
+      <h3>globalThis.leanweb</h3>
+      <p>The runtime's only footprint on the global scope — everything hangs off it.</p>
+   </div>
+   <div class="row">
+      <code class="sig">updateComponents(...tagNames)</code>
+      <p>Re-render components by tag name; with no arguments, every component in the app. Only changed parts
+         are written to the DOM.</p>
+   </div>
+   <div class="row">
+      <code class="sig">eventBus</code>
+      <p>The shared <code>LWEventBus</code> instance — see below.</p>
+   </div>
+   <div class="row">
+      <code class="sig">urlHash</code>
+      <p>Mirrors <code>location.hash</code>. Read it in expressions, assign it to navigate.</p>
+   </div>
+   <div class="row">
+      <code class="sig">urlHashPath</code>
+      <p>The path part of the hash: for <code>#/login?a=1</code> it reads <code>#/login</code>. Assigning it
+         keeps the params.</p>
+   </div>
+   <div class="row">
+      <code class="sig">urlHashParams</code>
+      <p>The params as an object: for <code>#/login?a=1&amp;a=2&amp;c=3</code> it reads
+         <code>{a: ['1', '2'], c: '3'}</code>. Assigning it rewrites the query.</p>
+   </div>
+   <div class="row">
+      <code class="sig">runtimeVersion</code>
+      <p>The project's runtime version — the version chip in the hero renders it live.</p>
+   </div>
+</div>
+
+<div class="api-group card">
+   <div class="api-head">
+      <h3>LWElement</h3>
+      <p>The base class. A Leanweb component is an <code>HTMLElement</code> with its directives wired up —
+         override the hooks you need.</p>
+   </div>
+   <div class="row">
+      <code class="sig">update(rootNode)</code>
+      <p>Re-render the component, or just a subtree when <code>rootNode</code> is given. Called for you on
+         local events, model changes, settled <code>async</code> methods, and parent renders.</p>
+   </div>
+   <div class="row">
+      <code class="sig">domReady()</code>
+      <p>Called once, after the first render is bound and evaluated.</p>
+   </div>
+   <div class="row">
+      <code class="sig">inputReady()</code>
+      <p>Called when the parent's <code>lw-input:</code> values have arrived.</p>
+   </div>
+   <div class="row">
+      <code class="sig">turnedOn() · turnedOff()</code>
+      <p>Called when the component's own <code>lw-if</code> restores it — or parks it.</p>
+   </div>
+   <div class="row">
+      <code class="sig">urlHashChanged()</code>
+      <p>If defined, called on every hash change, and the component re-renders after it — the routing hook.</p>
+   </div>
+</div>
+
+<div class="api-group card">
+   <div class="api-head">
+      <h3>LWEventBus</h3>
+      <p>A tiny pub/sub shared by every component at <code>leanweb.eventBus</code>.</p>
+   </div>
+   <div class="row">
+      <code class="sig">addEventListener(eventName, callback)</code>
+      <p>Subscribe. The callback receives <code>{eventName, data}</code>; the returned listener is your
+         unsubscribe ticket.</p>
+   </div>
+   <div class="row">
+      <code class="sig">removeEventListener(listener)</code>
+      <p>Unsubscribe whatever <code>addEventListener</code> returned.</p>
+   </div>
+   <div class="row">
+      <code class="sig">dispatchEvent(eventName, data)</code>
+      <p>Publish to every current subscriber.</p>
+   </div>
+</div>

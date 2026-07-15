@@ -1,0 +1,40 @@
+<div class="demo" id="custom-events">
+   <div class="demo-head">
+      <h3>Signals up: custom events<a class="anchor" href="#custom-events">#</a></h3>
+      <p>A child notifies its parent by dispatching a <code>CustomEvent</code>; the parent listens with
+         <code>lw-on:</code> right on the child's tag — same directive, your event name, payload on
+         <code>$event.detail</code>. The listener belongs to the parent, so the parent re-renders.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="parent.html"><pre><code>
+            &lt;p&gt;Cart total &lt;b lw&gt;count&lt;/b&gt;&lt;/p&gt;
+            &lt;demo-child lw-on:add='count += $event.detail'&gt;&lt;/demo-child&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="parent.js"><pre><code>
+            customElements.define('demo-parent',
+               class extends LWElement {
+                  count = 0;
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="child.html"><pre><code>
+            &lt;button lw-on:click='send(1)'&gt;Add one&lt;/button&gt;
+            &lt;button lw-on:click='send(5)'&gt;Add five&lt;/button&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="child.js"><pre><code>
+            customElements.define('demo-child',
+               class extends LWElement {
+                  send(n) {
+                     this.dispatchEvent(new CustomEvent('add', { detail: n }));
+                  }
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <p>Cart total <b lw>count</b></p>
+         <leanweb-app-advanced-emit-child lw-on:add="count += $event.detail"></leanweb-app-advanced-emit-child>
+      </leanweb-app-window>
+   </div>
+</div>

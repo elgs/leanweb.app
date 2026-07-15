@@ -1,0 +1,13 @@
+display: block;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  button { margin: 0; }
+}
+
+.chosen {
+  outline: 2px solid #34d399;
+}

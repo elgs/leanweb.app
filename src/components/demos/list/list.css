@@ -1,0 +1,34 @@
+display: block;
+
+ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  .col-label {
+    font: 500 .72rem/1 var(--font-mono);
+    letter-spacing: .05em;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+
+  .person {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+
+    span { min-width: 44px; }
+
+    input { width: 100%; min-width: 0; }
+  }
+}
+
+@media (max-width: 520px) {
+  .cols { grid-template-columns: 1fr; }
+}

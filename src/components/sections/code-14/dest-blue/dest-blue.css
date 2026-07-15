@@ -1,6 +1,0 @@
-:host {
-  border: 1px solid var(--ui-primary);
-  border-radius: var(--ui-radius);
-  padding: 8px;
-  background: var(--ui-primary-light);
-}

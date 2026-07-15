@@ -1,0 +1,12 @@
+display: block;
+
+.dial {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  b {
+    font-family: var(--font-mono);
+    min-width: 2ch;
+  }
+}

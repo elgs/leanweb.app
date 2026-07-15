@@ -1,0 +1,5 @@
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+
+button { margin: 0; }

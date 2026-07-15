@@ -1,0 +1,42 @@
+<div class="demo" id="selects">
+   <div class="demo-head">
+      <h3>Selects<a class="anchor" href="#selects">#</a></h3>
+      <p>A dropdown binds to one value; add <code>multiple</code> and the same directive binds to an array.
+         Generate the options with <code>lw-for</code>.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;select lw-model='zone'&gt;
+               &lt;option lw lw-for='z in zones'&gt;z&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;p&gt;Meeting time in &lt;b lw&gt;zone&lt;/b&gt;&lt;/p&gt;
+
+            &lt;select lw-model='crew' multiple&gt;
+               &lt;option lw lw-for='p in people'&gt;p&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;p lw&gt;'On call: ' + crew.join(' + ')&lt;/p&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               zones = ['UTC', 'America/Phoenix', 'Asia/Tokyo'];
+               zone = 'America/Phoenix';
+
+               people = ['Ada', 'Grace', 'Linus'];
+               crew = ['Ada'];
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <select lw-model="zone">
+            <option lw lw-for="z in zones">z</option>
+         </select>
+         <p>Meeting time in <b lw>zone</b></p>
+         <hr>
+         <select lw-model="crew" multiple>
+            <option lw lw-for="p in people">p</option>
+         </select>
+         <p lw>'On call: ' + crew.join(' + ')</p>
+      </leanweb-app-window>
+   </div>
+</div>

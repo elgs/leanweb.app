@@ -1,52 +1,87 @@
-.commands,
-.directives,
-.form-bindings,
-.advanced-topics,
-.howtos,
-.apis {
-  padding: var(--lw-section-gap) 24px;
+display: block;
 
-  div.center {
-    max-width: var(--lw-content-max);
-    margin: 0 auto;
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 0 0 8px 0;
 
-    > h1 {
-      font-size: 2rem;
+  &:focus { left: 0; }
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    height: 100%;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--ink);
+
+    &:hover { text-decoration: none; }
+
+    .word {
+      font-size: 1.08rem;
       font-weight: 700;
-      color: var(--ui-text);
-      margin: 0 0 4px 0;
-      letter-spacing: -0.02em;
+      letter-spacing: -.03em;
     }
+  }
 
-    > .subtitle {
-      font-size: 1.05rem;
-      color: var(--ui-text-muted);
-      margin: 0 0 32px 0;
-      line-height: 1.5;
+  .links {
+    display: flex;
+    gap: 2px;
+    margin-left: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+
+    a {
+      font-size: .87rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      padding: 6px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+
+      &:hover {
+        color: var(--ink);
+        background: var(--bg-soft);
+        text-decoration: none;
+      }
+
+      &.active {
+        color: var(--accent-ink);
+        background: var(--accent-soft);
+      }
     }
+  }
+
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 }
 
-.commands {
-  background: var(--ui-bg);
-}
-
-.directives {
-  background: var(--ui-bg-subtle);
-}
-
-.form-bindings {
-  background: var(--ui-bg);
-}
-
-.advanced-topics {
-  background: var(--ui-bg-subtle);
-}
-
-.howtos {
-  background: var(--ui-bg);
-}
-
-.apis {
-  background: var(--ui-bg-subtle);
+@media (max-width: 720px) {
+  .nav .brand .word { display: none; }
 }

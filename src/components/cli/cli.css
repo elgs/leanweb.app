@@ -1,0 +1,30 @@
+display: block;
+
+leanweb-app-window {
+  display: block;
+  max-width: 560px;
+  margin-bottom: 28px;
+}
+
+.term {
+  font: .85rem/2 var(--font-mono);
+  color: var(--ink);
+
+  .cmt { color: var(--ink-3); }
+}
+
+.cmds .card {
+  .cmd {
+    font: 600 .9rem/1 var(--font-mono);
+    color: var(--accent-ink);
+    margin-bottom: 10px;
+
+    &::before {
+      content: '$ ';
+      color: var(--ink-3);
+      font-weight: 400;
+    }
+  }
+
+  p { font-size: .92rem; }
+}

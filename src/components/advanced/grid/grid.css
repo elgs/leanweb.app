@@ -1,0 +1,9 @@
+display: block;
+
+.r {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  input { width: 64px; }
+}

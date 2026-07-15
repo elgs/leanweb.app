@@ -1,0 +1,53 @@
+<div class="demo" id="event-bus">
+   <div class="demo-head">
+      <h3>Across the tree: the event bus<a class="anchor" href="#event-bus">#</a></h3>
+      <p>Components with no DOM relationship talk through <code>leanweb.eventBus</code> — publish with
+         <code>dispatchEvent</code>, subscribe with <code>addEventListener</code>, which returns the listener
+         you later hand to <code>removeEventListener</code>. Bus callbacks run outside any DOM event, so they
+         call <code>update()</code> themselves — as does the clock's <code>setInterval</code>.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="clock.js"><pre><code>
+            customElements.define('demo-clock',
+               class extends LWElement {
+                  constructor() {
+                     super(ast);
+                     setInterval(() => {
+                        this.time = new Date().toLocaleTimeString();
+                        leanweb.eventBus.dispatchEvent('tick', this.time);
+                        this.update();
+                     }, 1000);
+                  }
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="display.html"><pre><code>
+            &lt;p&gt;Hearing &lt;b lw&gt;time ?? '-'&lt;/b&gt;&lt;/p&gt;
+            &lt;button lw-bind:disabled='listener' lw-on:click='listen()'&gt;Listen&lt;/button&gt;
+            &lt;button lw-bind:disabled='!listener' lw-on:click='mute()'&gt;Mute&lt;/button&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="display.js"><pre><code>
+            customElements.define('demo-display',
+               class extends LWElement {
+                  listen() {
+                     this.listener = leanweb.eventBus.addEventListener('tick', event => {
+                        this.time = event.data;
+                        this.update();
+                     });
+                  }
+
+                  mute() {
+                     leanweb.eventBus.removeEventListener(this.listener);
+                     this.listener = null;
+                  }
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <leanweb-app-advanced-bus-pub></leanweb-app-advanced-bus-pub>
+         <leanweb-app-advanced-bus-sub></leanweb-app-advanced-bus-sub>
+      </leanweb-app-window>
+   </div>
+</div>

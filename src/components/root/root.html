@@ -1,60 +1,124 @@
-<leanweb-app-section-primary></leanweb-app-section-primary>
-<div class="commands">
-   <div class="center">
-      <h1>Commands</h1>
-      <p class="subtitle">Everything you need to scaffold, develop, and ship.</p>
-      <leanweb-app-sections-commands></leanweb-app-sections-commands>
-   </div>
-</div>
-<div class="directives">
-   <div class="center">
-      <h1>Directives</h1>
-      <p class="subtitle">Declarative data binding that stays close to the DOM.</p>
-      <leanweb-app-sections-code-00></leanweb-app-sections-code-00>
-      <leanweb-app-sections-code-01></leanweb-app-sections-code-01>
-      <leanweb-app-sections-code-02></leanweb-app-sections-code-02>
-      <leanweb-app-sections-code-03></leanweb-app-sections-code-03>
-      <leanweb-app-sections-code-04></leanweb-app-sections-code-04>
-      <leanweb-app-sections-code-05></leanweb-app-sections-code-05>
-      <leanweb-app-sections-code-06></leanweb-app-sections-code-06>
-   </div>
-</div>
-<div class="form-bindings">
-   <div class="center">
-      <h1>Form Bindings</h1>
-      <p class="subtitle">Two-way binding for inputs, checkboxes, radios, and more.</p>
-      <leanweb-app-sections-code-07></leanweb-app-sections-code-07>
-      <leanweb-app-sections-code-08></leanweb-app-sections-code-08>
-      <leanweb-app-sections-code-09></leanweb-app-sections-code-09>
-      <leanweb-app-sections-code-10></leanweb-app-sections-code-10>
-      <leanweb-app-sections-code-11></leanweb-app-sections-code-11>
-   </div>
-</div>
-<div class="advanced-topics">
-   <div class="center">
-      <h1>Advanced Topics</h1>
-      <p class="subtitle">Component communication, event bus, and cross-component updates.</p>
-      <leanweb-app-sections-code-16></leanweb-app-sections-code-16>
-      <leanweb-app-sections-code-15></leanweb-app-sections-code-15>
-      <leanweb-app-sections-code-12></leanweb-app-sections-code-12>
-      <leanweb-app-sections-code-13></leanweb-app-sections-code-13>
-      <leanweb-app-sections-code-14></leanweb-app-sections-code-14>
-   </div>
-</div>
+<a class="skip" href="#directives">Skip to content</a>
 
-<div class="howtos">
-   <div class="center">
-      <h1>HowTos</h1>
-      <p class="subtitle">Practical recipes for routing, deployment, and configuration.</p>
-      <leanweb-app-sections-howtos></leanweb-app-sections-howtos>
+<nav class="nav">
+   <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Leanweb home">
+         <img src="favicon.svg" alt="" width="26" height="26">
+         <span class="word">leanweb</span>
+      </a>
+      <div class="links">
+         <a href="#start">Start</a>
+         <a href="#directives">Directives</a>
+         <a href="#forms">Forms</a>
+         <a href="#composition">Composition</a>
+         <a href="#howtos">HowTos</a>
+         <a href="#api">API</a>
+      </div>
+      <div class="tools">
+         <button class="icon-btn" lw-on:click="toggleTheme()" aria-label="Toggle color theme">
+            <svg lw-if="!dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+               <path d="M20.2 14.5A8.2 8.2 0 0 1 9.5 3.8 8.2 8.2 0 1 0 20.2 14.5Z" />
+            </svg>
+            <svg lw-if="dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+               <circle cx="12" cy="12" r="4.2" />
+               <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7" />
+            </svg>
+         </button>
+         <a class="icon-btn" href="https://github.com/elgs/leanweb" aria-label="Leanweb on GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+               <path d="M12 1.7a10.5 10.5 0 0 0-3.3 20.4c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.6-1.2-1.6-1-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.3 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.7 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7.9.7 1.9v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.7Z" />
+            </svg>
+         </a>
+      </div>
    </div>
-</div>
+</nav>
 
-<div class="apis">
-   <div class="center">
-      <h1>APIs</h1>
-      <p class="subtitle">The complete reference for LWElement, event bus, and runtime.</p>
-      <leanweb-app-sections-apis></leanweb-app-sections-apis>
+<leanweb-app-hero></leanweb-app-hero>
+
+<section class="section" id="start">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">Get started</div>
+         <h2>From zero to component in a minute</h2>
+         <p>One global install, one command to scaffold, one to serve. The toolchain stays out of your way after
+            that.</p>
+      </div>
+      <leanweb-app-cli></leanweb-app-cli>
    </div>
-</div>
+</section>
+
+<section class="section" id="directives">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">Directives</div>
+         <h2>Bind data where it lives — in the DOM</h2>
+         <p>A handful of <code>lw-</code> attributes cover text, conditions, lists, events, and two-way binding.
+            Every expression is plain JavaScript evaluated against your component.</p>
+      </div>
+      <leanweb-app-demos-text></leanweb-app-demos-text>
+      <leanweb-app-demos-if></leanweb-app-demos-if>
+      <leanweb-app-demos-list></leanweb-app-demos-list>
+      <leanweb-app-demos-events></leanweb-app-demos-events>
+      <leanweb-app-demos-model></leanweb-app-demos-model>
+      <leanweb-app-demos-bind></leanweb-app-demos-bind>
+      <leanweb-app-demos-classes></leanweb-app-demos-classes>
+      <leanweb-app-demos-inputs></leanweb-app-demos-inputs>
+   </div>
+</section>
+
+<section class="section" id="forms">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">Forms</div>
+         <h2>Every control, one directive</h2>
+         <p><code>lw-model</code> keeps form state and component state in sync — checkboxes, radios, selects,
+            sliders, and values nested deep inside arrays.</p>
+      </div>
+      <leanweb-app-forms-checkbox></leanweb-app-forms-checkbox>
+      <leanweb-app-forms-radio></leanweb-app-forms-radio>
+      <leanweb-app-forms-select></leanweb-app-forms-select>
+      <leanweb-app-forms-range></leanweb-app-forms-range>
+      <leanweb-app-advanced-grid></leanweb-app-advanced-grid>
+   </div>
+</section>
+
+<section class="section" id="composition">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">Composition</div>
+         <h2>Components that work together</h2>
+         <p>Project markup into reusable shells, send signals up with DOM events, share objects down with
+            inputs, and reach across the tree with the event bus.</p>
+      </div>
+      <leanweb-app-advanced-slot></leanweb-app-advanced-slot>
+      <leanweb-app-advanced-emit></leanweb-app-advanced-emit>
+      <leanweb-app-advanced-direct></leanweb-app-advanced-direct>
+      <leanweb-app-advanced-bus></leanweb-app-advanced-bus>
+      <leanweb-app-advanced-update></leanweb-app-advanced-update>
+   </div>
+</section>
+
+<section class="section" id="howtos">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">HowTos</div>
+         <h2>Recipes for real projects</h2>
+         <p>Routing, cross-component updates, environments, and the dev server — the practical answers in one
+            place.</p>
+      </div>
+      <leanweb-app-howtos></leanweb-app-howtos>
+   </div>
+</section>
+
+<section class="section" id="api">
+   <div class="wrap">
+      <div class="section-head">
+         <div class="kicker">API</div>
+         <h2>The whole surface, on one screen</h2>
+         <p>One global, one base class, one event bus. If it's not here, Leanweb doesn't have it.</p>
+      </div>
+      <leanweb-app-apis></leanweb-app-apis>
+   </div>
+</section>
+
 <leanweb-app-footer></leanweb-app-footer>

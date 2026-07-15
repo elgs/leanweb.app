@@ -1,0 +1,32 @@
+<div class="demo" id="lw-on">
+   <div class="demo-head">
+      <h3><code>lw-on:</code><a class="anchor" href="#lw-on">#</a></h3>
+      <p>Listen to any DOM event. The handler is a plain expression with <code>$event</code> and
+         <code>$node</code> in scope, and the component re-renders after it runs. Bind several events at once
+         with a comma: <code>lw-on:focus,blur</code>.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;button lw-on:click='count++'&gt;Clicked &lt;b lw&gt;count&lt;/b&gt; times&lt;/button&gt;
+            &lt;input lw-on:focus,blur='seen($event, $node)' placeholder='focus me, leave me'&gt;
+            &lt;p lw&gt;last&lt;/p&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               count = 0;
+               last = 'nothing seen yet';
+
+               seen(event, node) {
+                  this.last = event.type + ' on &lt;' + node.localName + '&gt;';
+               }
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <button lw-on:click="count++">Clicked <b lw>count</b> times</button>
+         <input lw-on:focus,blur="seen($event, $node)" placeholder="focus me, leave me">
+         <p lw>last</p>
+      </leanweb-app-window>
+   </div>
+</div>

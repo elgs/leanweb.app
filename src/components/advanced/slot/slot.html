@@ -1,0 +1,124 @@
+<div class="demo" id="lw-slot">
+   <div class="demo-head">
+      <h3><code>lw-slot</code> — content projection<a class="anchor" href="#lw-slot">#</a></h3>
+      <p>A component with an <code>&lt;lw-slot&gt;</code> in its template renders whatever its client — the
+         component using it — writes between its tags. The component supplies the chrome; the client supplies
+         the content. And the content keeps belonging to the client: its expressions, its handlers, its
+         updates. That's what makes generic wrappers — cards, dialogs, panels — reusable.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="card.html"><pre><code>
+            &lt;div class='chrome' lw&gt;title&lt;/div&gt;
+            &lt;div class='content'&gt;
+               &lt;lw-slot&gt;&lt;/lw-slot&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="card.js"><pre><code>
+            customElements.define('demo-card',
+               class extends LWElement {
+                  title = 'demo-card chrome';
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;demo-card&gt;
+               &lt;p&gt;Clicked &lt;b lw&gt;clicks&lt;/b&gt; times.&lt;/p&gt;
+               &lt;button lw-on:click='clicks++'&gt;Click me&lt;/button&gt;
+            &lt;/demo-card&gt;
+
+            &lt;demo-card&gt;
+               &lt;input lw-model='note' placeholder='type a note'&gt;
+               &lt;p lw&gt;note&lt;/p&gt;
+            &lt;/demo-card&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            customElements.define('demo-app',
+               class extends LWElement {
+                  clicks = 0;
+                  note = '';
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <p class="state">app state — clicks: <b lw>clicks</b> · note: <b lw>note</b></p>
+         <div class="cols">
+            <leanweb-app-advanced-slot-card>
+               <p>Clicked <b lw>clicks</b> times.</p>
+               <button lw-on:click="clicks++">Click me</button>
+            </leanweb-app-advanced-slot-card>
+            <leanweb-app-advanced-slot-card>
+               <input lw-model="note" placeholder="type a note">
+               <p lw>note</p>
+            </leanweb-app-advanced-slot-card>
+         </div>
+      </leanweb-app-window>
+   </div>
+   <p class="note">The card never declares <code>clicks</code>, <code>note</code>, or a click handler — it has
+      no idea what's inside it. Watch the app-state line above the cards follow along.</p>
+
+   <h4 id="slot-talk">Talking across the slot</h4>
+   <p>The tag is the component's API. Data flows <em>in</em> through <code>lw-input:</code> — the client hands
+      the panel an object once, and the panel reads it on every render. Signals flow <em>out</em> as DOM
+      events the client catches with <code>lw-on:</code> on the tag. Nothing here is new to projection — the
+      slot moves markup, not data.</p>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="panel.html"><pre><code>
+            &lt;div class='chrome'&gt;
+               &lt;span lw&gt;header.title&lt;/span&gt;
+               &lt;button lw-on:click='refresh()'&gt;Refresh&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class='content'&gt;
+               &lt;lw-slot&gt;&lt;/lw-slot&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="panel.js"><pre><code>
+            customElements.define('demo-panel',
+               class extends LWElement {
+                  header = { title: 'demo-panel' };
+
+                  refresh() {
+                     this.dispatchEvent(new CustomEvent('refresh'));
+                  }
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;demo-panel lw-input:header='header' lw-on:refresh='reload()'&gt;
+               &lt;p lw&gt;'Loaded at ' + loadedAt&lt;/p&gt;
+               &lt;button lw-on:click='renamePanel()'&gt;Rename the panel&lt;/button&gt;
+            &lt;/demo-panel&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            customElements.define('demo-app',
+               class extends LWElement {
+                  header = { title: 'Results' };
+                  renames = 0;
+                  loadedAt = new Date().toLocaleTimeString();
+
+                  reload() {
+                     this.loadedAt = new Date().toLocaleTimeString();
+                  }
+
+                  renamePanel() {
+                     this.header.title = 'Results v' + (++this.renames);
+                  }
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <leanweb-app-advanced-slot-panel lw-input:header="header" lw-on:refresh="reload()">
+            <p lw>'Loaded at ' + loadedAt</p>
+            <button lw-on:click="renamePanel()">Rename the panel</button>
+         </leanweb-app-advanced-slot-panel>
+      </leanweb-app-window>
+   </div>
+   <p class="note">Refresh sits on the panel's chrome, but what it reloads is the client's content. Rename sits
+      in the content, but what it changes is the panel's chrome. Rules: one <code>lw-slot</code> per template,
+      never inside an <code>lw-for</code> — both are build errors. With <code>shadowDom: true</code> the native
+      <code>&lt;slot&gt;</code> does this job; <code>lw-slot</code> brings the same model to the default light
+      DOM. Every live frame on this page is a component with an <code>lw-slot</code>.</p>
+</div>

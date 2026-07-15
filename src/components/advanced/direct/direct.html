@@ -1,0 +1,42 @@
+<div class="demo" id="parent-ref">
+   <div class="demo-head">
+      <h3>A direct line: passing <code>this</code><a class="anchor" href="#parent-ref">#</a></h3>
+      <p>Since <code>lw-input:</code> passes references, passing <code>this</code> hands the child the whole
+         parent — methods included. Note the parent renders itself in <code>add()</code>: the click was the
+         child's event, so the parent takes care of its own view.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="parent.html"><pre><code>
+            &lt;p&gt;Score &lt;b lw&gt;score&lt;/b&gt;&lt;/p&gt;
+            &lt;demo-child lw-input:parent='this'&gt;&lt;/demo-child&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="parent.js"><pre><code>
+            customElements.define('demo-parent',
+               class extends LWElement {
+                  score = 0;
+
+                  add(points) {
+                     this.score += points;
+                     this.update();
+                  }
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="child.html"><pre><code>
+            &lt;button lw-on:click='parent.add(10)'&gt;+10 from the child&lt;/button&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="child.js"><pre><code>
+            customElements.define('demo-child',
+               class extends LWElement {
+                  parent;
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <p>Score <b lw>score</b></p>
+         <leanweb-app-advanced-direct-child lw-input:parent="this"></leanweb-app-advanced-direct-child>
+      </leanweb-app-window>
+   </div>
+</div>

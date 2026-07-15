@@ -1,0 +1,102 @@
+<div class="howto-grid">
+   <div class="card howto">
+      <h3>How do I route between screens?</h3>
+      <p>With components and <code>lw-if</code> — no router. <code>leanweb.urlHash</code> mirrors
+         <code>location.hash</code>, so screens are just conditions:</p>
+      <div class="code-block" data-file="root.html"><pre><code>
+         &lt;demo-login lw-if="leanweb.urlHash === '#/login'"&gt;&lt;/demo-login&gt;
+         &lt;demo-signup lw-if="leanweb.urlHash === '#/signup'"&gt;&lt;/demo-signup&gt;
+         &lt;demo-dashboard lw-if="leanweb.urlHash === '#/dashboard'"&gt;&lt;/demo-dashboard&gt;
+      </code></pre></div>
+      <p>Define <code>urlHashChanged()</code> on the routing component: the runtime calls it on every hash
+         change and re-renders the component, which re-evaluates the conditions. Parked screens keep their
+         state for the way back.</p>
+      <div class="code-block" data-file="root.js"><pre><code>
+         customElements.define('demo-root',
+            class extends LWElement {
+               urlHashChanged() {
+                  document.title = 'demo ' + leanweb.urlHashPath;
+               }
+            }
+         );
+      </code></pre></div>
+   </div>
+
+   <div class="card howto">
+      <h3>How do I update a component from outside?</h3>
+      <p>Components are real elements, so the direct route always works:</p>
+      <div class="code-block" data-file="anywhere.js"><pre><code>
+         document.querySelector('demo-login').update();
+      </code></pre></div>
+      <p>By tag name, without touching the DOM — or app-wide with no arguments. Only changed parts are
+         written:</p>
+      <div class="code-block" data-file="anywhere.js"><pre><code>
+         leanweb.updateComponents('demo-login', 'demo-cart');
+         leanweb.updateComponents();
+      </code></pre></div>
+   </div>
+
+   <div class="card howto">
+      <h3>How do environments work?</h3>
+      <p><code>lw serve</code> and <code>lw dist</code> ship <code>src/env.js</code> as-is;
+         <code>lw serve prod</code> and <code>lw dist prod</code> swap in <code>src/env/prod.js</code>. Add
+         files to <code>src/env/</code> for as many environments as you need.</p>
+      <div class="code-block" data-file="env/prod.js"><pre><code>
+         export default {
+            apiUrl: 'https://api.example.com'
+         };
+      </code></pre></div>
+      <div class="code-block" data-file="login.js"><pre><code>
+         import env from './../../env.js';
+
+         const users = await fetch(env.apiUrl + '/users');
+      </code></pre></div>
+   </div>
+
+   <div class="card howto">
+      <h3>What can the dev server do?</h3>
+      <p>Options are environment variables in front of the command:</p>
+      <div class="term">
+         <div class="line"><span class="ps1">$</span> port=9999 lw serve</div>
+         <div class="line"><span class="ps1">$</span> host=0.0.0.0 lw serve <span class="cmt"># all IPv4 interfaces</span></div>
+         <div class="line"><span class="ps1">$</span> host=:: lw serve <span class="cmt"># IPv6 too</span></div>
+         <div class="line"><span class="ps1">$</span> noopen=1 lw serve <span class="cmt"># skip opening the browser</span></div>
+         <div class="line"><span class="ps1">$</span> https=./https.js lw serve</div>
+         <div class="line"><span class="ps1">$</span> verbose=1 lw dist <span class="cmt"># bundle analysis</span></div>
+      </div>
+      <div class="code-block" data-file="https.js"><pre><code>
+         const fs = require('fs');
+
+         module.exports = {
+            cert: fs.readFileSync(__dirname + '/localhost.pem'),
+            key: fs.readFileSync(__dirname + '/localhost.key.pem'),
+            passphrase: '12345'
+         };
+      </code></pre></div>
+   </div>
+
+   <div class="card howto">
+      <h3>Anything after the build?</h3>
+      <p>If an executable <code>post-dist</code> file sits in the project root, <code>lw dist</code> runs it
+         after the build lands — handy for shipping <code>dist/</code> wherever it goes next. This site's own
+         <code>post-dist</code> copies <code>robots.txt</code> and <code>sitemap.xml</code> into place.</p>
+      <div class="code-block" data-file="post-dist"><pre><code>
+         #!/bin/sh
+         cp -r dist/* ../server/public/
+      </code></pre></div>
+   </div>
+
+   <div class="card howto">
+      <h3>Need Shadow DOM after all?</h3>
+      <p>Start the project with <code>lw init --shadow-dom</code>, or flip <code>shadowDom</code> to
+         <code>true</code> in <code>leanweb.json</code>. Same directives, same components — CSS moves into
+         adopted stylesheets, <code>global-styles.css</code> reaches into every shadow root, and the native
+         <code>&lt;slot&gt;</code> takes over projection from <code>lw-slot</code>.</p>
+      <div class="code-block" data-file="leanweb.json"><pre><code>
+         {
+            "name": "demo",
+            "shadowDom": true
+         }
+      </code></pre></div>
+   </div>
+</div>

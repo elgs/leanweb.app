@@ -1,0 +1,33 @@
+<div class="demo" id="lw-class">
+   <div class="demo-head">
+      <h3><code>lw-class:</code><a class="anchor" href="#lw-class">#</a></h3>
+      <p>Toggle a CSS class from a boolean expression — added while it's true, removed when it's false.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;div class='row'&gt;
+               &lt;button lw lw-for='size, $i in sizes'
+                  lw-class:chosen='picked === $i'
+                  lw-on:click='picked = $i'&gt;size&lt;/button&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.css"><pre><code>
+            .chosen {
+               outline: 2px solid #34d399;
+            }
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               sizes = ['Small', 'Medium', 'Large'];
+               picked = 1;
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <div class="row">
+            <button lw lw-for="size, $i in sizes" lw-class:chosen="picked === $i" lw-on:click="picked = $i">size</button>
+         </div>
+      </leanweb-app-window>
+   </div>
+</div>

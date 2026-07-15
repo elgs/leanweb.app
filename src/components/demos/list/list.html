@@ -1,0 +1,77 @@
+<div class="demo" id="lw-for">
+   <div class="demo-head">
+      <h3><code>lw-for</code><a class="anchor" href="#lw-for">#</a></h3>
+      <p>Repeat an element for every item of an array. The loop variable and an optional <code>$index</code>
+         are in scope for every binding inside the row.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;ul&gt;
+               &lt;li lw lw-for='planet, $index in planets'&gt;$index + 1 + '. ' + planet&lt;/li&gt;
+            &lt;/ul&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               planets = ['Mercury', 'Venus', 'Earth'];
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <ul>
+            <li lw lw-for="planet, $index in planets">$index + 1 + '. ' + planet</li>
+         </ul>
+      </leanweb-app-window>
+   </div>
+
+   <h4 id="lw-key">Keyed rows with <code>lw-key</code></h4>
+   <p>Without a key, rows are reused by position: reorder the array and each DOM node stays put, receiving
+      whichever item now sits at its index — anything living on the node itself (focus, a transition, text
+      typed into an input) stays behind. Add <code>lw-key</code> to match rows to items by identity instead,
+      so the node travels with its data. Keys must be defined and unique; for rows re-fetched from a server,
+      key by a stable field like <code>p.id</code>.</p>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;button lw-on:click='people.reverse()'&gt;Reverse&lt;/button&gt;
+
+            &lt;!-- reused by position: contents rewritten in place --&gt;
+            &lt;div lw-for='p in people'&gt;
+               &lt;span lw&gt;p.name&lt;/span&gt; &lt;input placeholder='type here'&gt;
+            &lt;/div&gt;
+
+            &lt;!-- keyed: the row node moves with its person --&gt;
+            &lt;div lw-for='p in people' lw-key='p.id'&gt;
+               &lt;span lw&gt;p.name&lt;/span&gt; &lt;input placeholder='type here'&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               people = [
+                  { id: 1, name: 'Ada' },
+                  { id: 2, name: 'Grace' },
+               ];
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <button lw-on:click="people.reverse()">Reverse</button>
+         <div class="cols">
+            <div class="col">
+               <p class="col-label">without lw-key</p>
+               <div class="person" lw-for="p in people">
+                  <span lw>p.name</span> <input placeholder="type here">
+               </div>
+            </div>
+            <div class="col">
+               <p class="col-label">with lw-key</p>
+               <div class="person" lw-for="p in people" lw-key="p.id">
+                  <span lw>p.name</span> <input placeholder="type here">
+               </div>
+            </div>
+         </div>
+      </leanweb-app-window>
+   </div>
+   <p class="note">Try it: type next to a name, then reverse. On the left the text stays at its position and
+      ends up beside the wrong name; on the right it travels with its person.</p>
+</div>

@@ -1,0 +1,24 @@
+display: block;
+border: 1px solid var(--line-strong);
+border-radius: var(--radius);
+overflow: hidden;
+background: var(--bg);
+
+.chrome {
+  font: 500 .72rem/1 var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--ink-3);
+  background: var(--bg-soft);
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content {
+  padding: 14px;
+
+  lw-slot > * + * { margin-top: 10px; }
+
+  p { margin: 0; overflow-wrap: anywhere; }
+
+  input { width: 100%; }
+}

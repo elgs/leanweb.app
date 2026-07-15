@@ -1,0 +1,24 @@
+<div class="demo" id="lw">
+   <div class="demo-head">
+      <h3><code>lw</code><a class="anchor" href="#lw">#</a></h3>
+      <p>Evaluate a JavaScript expression and render it as text. Properties, ternaries, math, method calls —
+         if it's an expression, it works. <code>this</code> is the component itself.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;p&gt;Hello &lt;b lw&gt;name&lt;/b&gt;!&lt;/p&gt;
+            &lt;p&gt;I &lt;span lw&gt;this instanceof HTMLElement ? '❤️' : '💔'&lt;/span&gt; web standards.&lt;/p&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            class extends LWElement {
+               name = 'Leanweb';
+            }
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <p>Hello <b lw>name</b>!</p>
+         <p>I <span lw>this instanceof HTMLElement ? '❤️' : '💔'</span> web standards.</p>
+      </leanweb-app-window>
+   </div>
+</div>

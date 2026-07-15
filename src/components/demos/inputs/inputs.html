@@ -1,0 +1,40 @@
+<div class="demo" id="lw-input">
+   <div class="demo-head">
+      <h3><code>lw-input:</code><a class="anchor" href="#lw-input">#</a></h3>
+      <p>Hand data from a parent to a child component. The child receives a reference to the very same
+         object — not a copy — so either side sees the other's changes. Parent renders propagate to children
+         automatically, and the child's own events re-render the child.</p>
+   </div>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="parent.html"><pre><code>
+            &lt;p&gt;&lt;b lw&gt;item.name&lt;/b&gt; order&lt;/p&gt;
+            &lt;button lw-on:click='item.qty++'&gt;Add from parent&lt;/button&gt;
+            &lt;demo-child lw-input:item='item'&gt;&lt;/demo-child&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="parent.js"><pre><code>
+            customElements.define('demo-parent',
+               class extends LWElement {
+                  item = { name: 'Espresso', qty: 1 };
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="child.html"><pre><code>
+            &lt;p&gt;Child sees &lt;b lw&gt;item?.qty&lt;/b&gt;&lt;/p&gt;
+            &lt;button lw-on:click='item.qty++'&gt;Add from child&lt;/button&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="child.js"><pre><code>
+            customElements.define('demo-child',
+               class extends LWElement {
+                  item;
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <p><b lw>item.name</b> order</p>
+         <button lw-on:click="item.qty++">Add from parent</button>
+         <leanweb-app-demos-inputs-child lw-input:item="item"></leanweb-app-demos-inputs-child>
+      </leanweb-app-window>
+   </div>
+</div>

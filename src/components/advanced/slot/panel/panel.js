@@ -1,0 +1,16 @@
+import LWElement from './../../../../lib/lw-element.js';
+import ast from './ast.js';
+
+customElements.define('leanweb-app-advanced-slot-panel',
+   class extends LWElement {  // LWElement extends HTMLElement
+      constructor() {
+         super(ast);
+      }
+
+      header = { title: 'demo-panel' };
+
+      refresh() {
+         this.dispatchEvent(new CustomEvent('refresh'));
+      }
+   }
+);
