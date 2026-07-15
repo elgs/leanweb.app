@@ -6,18 +6,15 @@ customElements.define('leanweb-app-root',
       constructor() {
          super(ast);
          const stored = localStorage.getItem('lw-theme');
-         if (stored === 'dark' || stored === 'light') {
-            this.dark = stored === 'dark';
-         } else {
-            this.dark = matchMedia('(prefers-color-scheme: dark)').matches;
-         }
+         this.theme = stored === 'dark' || stored === 'light' ? stored : 'auto';
       }
 
-      toggleTheme() {
-         this.dark = !this.dark;
-         const theme = this.dark ? 'dark' : 'light';
-         document.documentElement.dataset.theme = theme;
-         localStorage.setItem('lw-theme', theme);
+      // auto (follow the system) → light → dark → auto
+      cycleTheme() {
+         const order = ['auto', 'light', 'dark'];
+         this.theme = order[(order.indexOf(this.theme) + 1) % order.length];
+         document.documentElement.dataset.theme = this.theme;
+         localStorage.setItem('lw-theme', this.theme);
       }
 
       domReady() {
