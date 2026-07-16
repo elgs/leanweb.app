@@ -2,7 +2,9 @@ display: block;
 
 .howto-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+  /* 560px minimum keeps every sample line whole — same width budget the
+     demo code panels set; the content column caps at one card per row. */
+  grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr));
   gap: 16px;
 }
 

@@ -253,18 +253,14 @@ leanweb-app-window {
 
   h4 + p { margin-bottom: 18px; max-width: 70ch; }
 
+  /* Code panels at full column width — the samples set the width budget
+     since the type got bigger — with the live result frame below them. */
   .duo {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 22px;
-    align-items: start;
 
     .code { display: grid; gap: 12px; min-width: 0; }
-
-    leanweb-app-window {
-      position: sticky;
-      top: calc(var(--nav-h) + 20px);
-    }
   }
 
   .note {
@@ -280,13 +276,6 @@ leanweb-app-window {
 }
 
 .demo:first-of-type { border-top: none; padding-top: 8px; }
-
-@media (max-width: 900px) {
-  .demo .duo {
-    grid-template-columns: 1fr;
-    leanweb-app-window { position: static; }
-  }
-}
 
 /* ---------- code blocks ---------- */
 

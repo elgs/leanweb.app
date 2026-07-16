@@ -11,8 +11,13 @@ customElements.define('leanweb-app-window',
          super(ast);
       }
 
+      // The bar stays bare unless a section asks for a label (the CLI's
+      // "terminal"); no default — a result frame speaks for itself.
       domReady() {
-         this.querySelector('.bar > .title').textContent = this.getAttribute('label') ?? 'result';
+         const label = this.getAttribute('label');
+         if (label) {
+            this.querySelector('.bar > .title').textContent = label;
+         }
       }
    }
 );
