@@ -9,10 +9,19 @@ customElements.define('leanweb-app-advanced-slot',
 
       clicks = 0;
       note = '';
+      stars = 0;
 
       header = { title: 'Results' };
       renames = 0;
       loadedAt = new Date().toLocaleTimeString();
+
+      star() {
+         this.stars++;
+      }
+
+      reset() {
+         this.stars = 0;
+      }
 
       reload() {
          this.loadedAt = new Date().toLocaleTimeString();

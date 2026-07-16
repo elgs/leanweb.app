@@ -58,6 +58,82 @@
    <p class="note">The card never declares <code>clicks</code>, <code>note</code>, or a click handler — it has
       no idea what's inside it. Watch the app-state line above the cards follow along.</p>
 
+   <h4 id="slot-named">Named slots &amp; fallback content</h4>
+   <p>A template can offer more than one slot: give each a <code>name</code>, and leave at most one unnamed —
+      the <em>default</em>. A client child with <code>slot='name'</code> lands in the matching
+      <code>&lt;lw-slot name='name'&gt;</code>; everything else lands in the default slot. And whatever the
+      component writes <em>inside</em> a slot is fallback content — its own markup, rendered by itself — kept
+      only when the client sends nothing for that slot.</p>
+   <div class="duo">
+      <div class="code">
+         <div class="code-block" data-file="pane.html"><pre><code>
+            &lt;div class='chrome'&gt;
+               &lt;span&gt;demo-pane&lt;/span&gt;
+               &lt;lw-slot name='actions'&gt;&lt;/lw-slot&gt;
+            &lt;/div&gt;
+            &lt;div class='content'&gt;
+               &lt;lw-slot&gt;&lt;/lw-slot&gt;
+            &lt;/div&gt;
+            &lt;div class='foot'&gt;
+               &lt;lw-slot name='footer'&gt;
+                  &lt;small&gt;demo-pane default footer&lt;/small&gt;
+               &lt;/lw-slot&gt;
+            &lt;/div&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="pane.js"><pre><code>
+            customElements.define('demo-pane',
+               class extends LWElement {
+                  // no state, no handlers — just placement
+               }
+            );
+         </code></pre></div>
+         <div class="code-block" data-file="app.html"><pre><code>
+            &lt;demo-pane&gt;
+               &lt;button slot='actions' lw-on:click='star()'&gt;Star&lt;/button&gt;
+               &lt;p&gt;Starred &lt;b lw&gt;stars&lt;/b&gt; times. No footer sent —
+                  the pane keeps its own.&lt;/p&gt;
+            &lt;/demo-pane&gt;
+
+            &lt;demo-pane&gt;
+               &lt;button slot='actions' lw-on:click='reset()'&gt;Reset&lt;/button&gt;
+               &lt;p&gt;This one sends a footer of its own.&lt;/p&gt;
+               &lt;small slot='footer' lw&gt;'stars: ' + stars&lt;/small&gt;
+            &lt;/demo-pane&gt;
+         </code></pre></div>
+         <div class="code-block" data-file="app.js"><pre><code>
+            customElements.define('demo-app',
+               class extends LWElement {
+                  stars = 0;
+
+                  star() {
+                     this.stars++;
+                  }
+
+                  reset() {
+                     this.stars = 0;
+                  }
+               }
+            );
+         </code></pre></div>
+      </div>
+      <leanweb-app-window>
+         <div class="cols">
+            <leanweb-app-advanced-slot-pane>
+               <button slot="actions" lw-on:click="star()">Star</button>
+               <p>Starred <b lw>stars</b> times. No footer sent — the pane keeps its own.</p>
+            </leanweb-app-advanced-slot-pane>
+            <leanweb-app-advanced-slot-pane>
+               <button slot="actions" lw-on:click="reset()">Reset</button>
+               <p>This one sends a footer of its own.</p>
+               <small slot="footer" lw>'stars: ' + stars</small>
+            </leanweb-app-advanced-slot-pane>
+         </div>
+      </leanweb-app-window>
+   </div>
+   <p class="note">One <code>slot='actions'</code> attribute put each button in the chrome — the pane never
+      declared either. The left footer is the pane's fallback; the right one is client content that replaced
+      it, and it keeps rendering client state. Names pick the landing spot; ownership never moves.</p>
+
    <h4 id="slot-talk">Talking across the slot</h4>
    <p>The tag is the component's API. Data flows <em>in</em> through <code>lw-input:</code> — the client hands
       the panel an object once, and the panel reads it on every render. Signals flow <em>out</em> as DOM
@@ -117,8 +193,9 @@
       </leanweb-app-window>
    </div>
    <p class="note">Refresh sits on the panel's chrome, but what it reloads is the client's content. Rename sits
-      in the content, but what it changes is the panel's chrome. Rules: one <code>lw-slot</code> per template,
-      never inside an <code>lw-for</code> — both are build errors. With <code>shadowDom: true</code> the native
-      <code>&lt;slot&gt;</code> does this job; <code>lw-slot</code> brings the same model to the default light
-      DOM. Every live frame on this page is a component with an <code>lw-slot</code>.</p>
+      in the content, but what it changes is the panel's chrome. Rules: at most one <code>lw-slot</code> per
+      name — one unnamed default — and never inside an <code>lw-for</code>; both are build errors. With
+      <code>shadowDom: true</code> the native <code>&lt;slot&gt;</code> does this job, names included;
+      <code>lw-slot</code> brings the same model to the default light DOM. Every live frame on this page is a
+      component with an <code>lw-slot</code>.</p>
 </div>

@@ -23,6 +23,7 @@
     "advanced/slot",
     "advanced/slot/card",
     "advanced/slot/panel",
+    "advanced/slot/pane",
     "advanced/emit",
     "advanced/emit/child",
     "advanced/direct",
